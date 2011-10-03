@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="washu-commons" default="build.jar" xmlns:ivy="antlib:org.apache.ivy.ant">
 
-	<property name="base.dir" value="." />
+	<property name="base.dir" value=".." />
 	<property name="src.dir" value="${base.dir}/src/java" />
 	<property name="dist.dir" value="${base.dir}/dist" />
-    <property name="software.dir" value=".."/>
+    <property name="software.dir" value="../../"/>
 	<property name="lib.dir" value="${base.dir}/src/lib" />
 	<property name="local-ivy-repo.dir" value="${software.dir}/local-ivy-repo"/>
 	<property name="temp.src.classes.dir" value="${software.dir}/target/temp/src/classes"/>
-	<property file="${software.dir}/washu-commons/src/conf/washu-commons.properties"/>
+	<property file="../conf/washu-commons.properties"/>
 	<target name="clean">
 		<delete includeemptydirs="true" dir="${temp.src.classes.dir}" />
 	</target>
@@ -60,7 +60,7 @@
 		</copy>
 	</target>
 
-	<property file="${software.dir}/washu-commons/src/conf/mail.properties"></property>
+	<property file="../conf/mail.properties"></property>
 
     <target name="testSendMailWithAuthentication" depends="compile" description="Sends the Mail after authentication of the sender">
         <java classname="edu.wustl.common.util.global.SendEmail">
