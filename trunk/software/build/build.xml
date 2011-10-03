@@ -128,15 +128,15 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/branches/automation-1.7.4
 	<property name="jboss.deploy.dir"  value="${jboss.home}/server/${jboss.server.name}/deploy"/>
 	<property name="washu-commons-webapp.name"  value="washu-commons-webapp"/>
 	<property name="washu-commons-webapp.file.name"  value="${washu-commons-webapp.name}.war"/>
-	<property name="washu-commons-webapp.src.dir" value="${washu-commons-webapp.base.dir}/src/web"/>
+	<property name="washu-commons-webapp.src.dir" value="${washu-commons-webapp.base.dir}/src/main/web"/>
 
 	<property name="override.properties.delimiter" value=","/>
 
 	<!-- retrive ivy.jar.files then retrieve bda files and librarires -->
 	<condition property="commonlibrary.dir" value="">
 		<or>
-		<os family="unix" />
-			<os family="mac" />
+            <os family="unix" />
+            <os family="mac" />
 		</or>
 	</condition>
 
@@ -327,7 +327,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/branches/automation-1.7.4
 
 	<target name="build:washu-commons-webapp" depends="init, build:washu-commons-api" description="Call webapp sub-projects build target to produce artifiacts">
 		<!-- setting the property in the ant call overrides the property in the sub-project allowing the artifact to be produced where needed -->
-		<ant inheritAll="false" inheritRefs="false" antfile="${washu-commons-webapp.build.file}" target="${washu-commons-webapp.build.target}" dir="${washu-commons-webapp.base.dir}">
+		<ant inheritAll="false" inheritRefs="false" antfile="${washu-commons-webapp.build.file}" target="${washu-commons-webapp.build.target}" dir="${washu-commons-webapp.base.dir}/build">
 			<property name="dist.dir" value="${washu-commons-webapp.dist.dir}" />
 			<property name="env.GLOBUS_LOCATION" value="${env.GLOBUS_LOCATION}"/>
 			<property name="commonlibrary.dir" value="${commonlibrary.dir}"/>
@@ -910,7 +910,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/branches/automation-1.7.4
 		</path>
 		<generate-uml
 			uml.dir="${uml.dir}"
-			src.java.dir="${washu-commons-webapp.base.dir}/src/java"
+			src.java.dir="${washu-commons-webapp.base.dir}/src/main/java"
 			uml.source.path="washu-commons.classpath.ref"
 			/>
 	</target>
