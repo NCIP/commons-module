@@ -2,7 +2,7 @@
 <project name="washu-commons" default="build.jar" xmlns:ivy="antlib:org.apache.ivy.ant">
 
 	<property name="base.dir" value=".." />
-	<property name="src.dir" value="${base.dir}/src/java" />
+	<property name="src.dir" value="${base.dir}/src/main/java" />
 	<property name="dist.dir" value="${base.dir}/dist" />
     <property name="software.dir" value="../../"/>
 	<property name="lib.dir" value="${base.dir}/src/lib" />
@@ -58,6 +58,17 @@
 		<copy todir="${dist.dir}">
 			<fileset dir="${src.dir}" includes="**/*" />
 		</copy>
+        <jar jarfile="${local-ivy-repo.dir}/washu-commons-${wc.jar.version}.src.jar" basedir="${dist.dir}">
+            <manifest>
+                <section name="${wc.jar.details}">
+                    <attribute name="Version" value="${wc.jar.version}"/>
+                    <attribute name="Built-By" value="${wc.jar.creator}" />
+                    <attribute name="Build-on" value="${TODAY} ${TSTAMP}" />
+                    <attribute name="SVN-URL" value="${dist.revision}" />
+                  </section>
+            </manifest>
+        </jar>
+        <delete dir="${dist.dir}" />
 	</target>
 
 	<property file="../conf/mail.properties"></property>
