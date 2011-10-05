@@ -1,48 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="washu-commons" default="build.jar" xmlns:ivy="antlib:org.apache.ivy.ant">
+<project name="washu-commons" default="build.jar" xmlns:ivy="antlib:org.apache.ivy.ant" basedir="../">
 
-	<property name="base.dir" value=".." />
-	<property name="src.dir" value="${base.dir}/src/main/java" />
-	<property name="dist.dir" value="${base.dir}/dist" />
-    <property name="software.dir" value="../../"/>
-	<property name="lib.dir" value="${base.dir}/src/lib" />
-	<property name="local-ivy-repo.dir" value="${software.dir}/local-ivy-repo"/>
-	<property name="temp.src.classes.dir" value="${software.dir}/target/temp/src/classes"/>
-	<property file="../conf/washu-commons.properties"/>
-	<target name="clean">
-		<delete includeemptydirs="true" dir="${temp.src.classes.dir}" />
-	</target>
+<!--PROPERTIES -->
 
-	<loadfile property="dist.revision" srcFile="./.svn/entries">
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties">
+        <classpath>
+            <pathelement location="${basedir}/src/lib/ant-contrib.jar" />
+        </classpath>
+    </taskdef>
+
+    <property file="${basedir}/conf/washu-commons.properties"/>
+    <property file="${basedir}/conf/commonpackage.properties"/>
+    <property file="${basedir}/conf/mail.properties"></property>
+
+	<property name="src.dir" value="${basedir}/src/main/java" />
+	<property name="dist.dir" value="${basedir}/dist" />
+	<property name="lib.dir" value="${basedir}/src/lib" />
+	<property name="local-ivy-repo.dir" value="${basedir}/../local-ivy-repo"/>
+
+    <!--define require dir and Properties -->
+
+    <property name="src.dir" value="${basedir}/src/main/java" />
+    <property name="res.dir" value="${basedir}/src/main/resources" />
+    <property name="test.src.dir" value="${basedir}/src/test/java" />
+    <property name="test.res.dir" value="${basedir}/src/test/resources" />
+
+    <property file="${test.res.dir}/junitConf.properties"/>
+
+    <property name="target.dir" value="${basedir}/target" />
+    <property name="lib.dir" value="${basedir}/lib" />
+    <property name="dist.dir" value="${basedir}/dist" />
+    <property name="extra_lib.dir" value="${basedir}/extra_lib" />
+    <property name="generateforce" value="true" />
+    <property name="junit.dir" value="${basedir}/target/junit" />
+    <property name="junit.report.dir" value="${junit.dir}/reports" />
+    <property name="junit.classes.dir" value="${junit.dir}/classes" />
+    <property name="code.coverage.report.dir" value="${junit.dir}/coverage-reports" />
+    <property name="instrumented.classes.dir" value="${junit.dir}/instrumented-classes" />
+    <property name="cobertura.home" value="${basedir}/cobertura"/>
+    <property name="cobertura.lib" value="${cobertura.home}/lib"/>
+    <property name="metadatatest.dir" value="/conf/metadataTestReport" />
+    <property name="metadatatest.report.dir" value="${metadatatest.dir}/Report" />
+    <property name="oracle.driver.string" value="oracle.jdbc.driver.OracleDriver" />
+    <property name="mysql.driver.string" value="org.gjt.mm.mysql.Driver" />
+    <property name="dist.revision" value="TEMP SVN REVISION" />
+
+    <loadfile property="dist.revision" srcFile="./.svn/entries">
         <filterchain>
             <headfilter lines="1" skip="4"/>
         </filterchain>
-	</loadfile>
+    </loadfile>
+
+<!--TARGETS-->
+
+
+	<target name="clean">
+        <delete dir="${target.dir}" failonerror="false" />
+        <delete dir="${junit.dir}" failonerror="false"/>
+        <delete dir="${junit.classes.dir}" failonerror="false"/>
+	</target>
+
 
 	<path id="compile.classpath">
 		<fileset dir="${lib.dir}">
-					<include name="*.jar" />
+            <include name="*.jar" />
 		</fileset>
 	</path>
 
     <target name="init">
+        <delete dir="${target.dir}" failonerror="false"/>
+        <mkdir dir="${target.dir}/classes" />
         <mkdir dir="${dist.dir}" />
+        <delete dir="${junit.dir}" failonerror="false"/>
+        <mkdir dir="${junit.dir}" />
+        <delete dir="${junit.classes.dir}" failonerror="false"/>
+        <mkdir dir="${junit.classes.dir}" />
+        <delete dir="${applet.dir}" failonerror="false"/>
+        <mkdir dir="${applet.dir}" />
     </target>
 
 	<target name="compile" depends="clean, init">
-		<mkdir dir="${temp.src.classes.dir}" />
-		<javac srcdir="${src.dir}" destdir="${temp.src.classes.dir}" fork="true" memoryMaximumSize="1200m" includes="**/*.java" debug="on" deprecation="true" classpathref="compile.classpath" failonerror="true" nowarn="on" target="1.5" />
-		<copy todir="${temp.src.classes.dir}">
+        <javac srcdir="${src.dir}"
+               destdir="${target.dir}/classes"
+               fork="true"
+               memoryMaximumSize="1200m"
+               includes="**/*.*"
+               debug="on"
+               deprecation="false"
+               classpathref="compile.classpath"
+               failonerror="true"
+               nowarn="on"
+               target="1.5" />
+
+        <copy todir="${target.dir}/classes">
 			<fileset dir="${src.dir}" includes="**/*.hbm.xml" />
 		</copy>
+
+        <copy todir="${target.dir}/classes">
+            <fileset dir="${src.dir}">
+                <include name="**/*.properties" />
+                <include name="**/*.xml" />
+                <include name="**/*.hbm.xml" />
+                <include name="**/*.ser" />
+                <exclude name="**/cab2b.properties"/>
+            </fileset>
+        </copy>
+
 	</target>
 
 	<target name="dist" depends="build.jar, build.src.zip"/>
 
 	<target name="build.jar" depends="compile">
 		<tstamp />
-
-		<jar jarfile="${local-ivy-repo.dir}/washu-commons-${wc.jar.version}.jar" basedir="${temp.src.classes.dir}">
+        <echo message="BASE: ${basedir}" />
+		<jar jarfile="${local-ivy-repo.dir}/washu-commons-${wc.jar.version}.jar" basedir="${target.dir}/classes">
 			<manifest>
 				<section name="${wc.jar.details}">
 					<attribute name="Version" value="${wc.jar.version}"/>
@@ -71,8 +142,6 @@
         <delete dir="${dist.dir}" />
 	</target>
 
-	<property file="../conf/mail.properties"></property>
-
     <target name="testSendMailWithAuthentication" depends="compile" description="Sends the Mail after authentication of the sender">
         <java classname="edu.wustl.common.util.global.SendEmail">
             <arg id="host" value="${email.mailServer}"/>
@@ -85,4 +154,327 @@
             </classpath>
         </java>
 	</target>
+
+<!---->
+
+	<!--define require dir and Properties -->
+
+
+	<path id="app.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+		</fileset>
+	</path>
+
+	<path id="xdoclet.classpath">
+		<path refid="app.classpath" />
+		<pathelement location="${extra_lib.dir}/commons-net-1.2.2.jar" />
+		<pathelement location="${extra_lib.dir}/hibernate-tools.jar" />
+		<pathelement location="${extra_lib.dir}/servlet-api.jar" />
+		<pathelement location="${extra_lib.dir}/xdoclet-1.2.3.jar" />
+		<pathelement location="${extra_lib.dir}/xdoclet-hibernate-module-1.2.jar" />
+		<pathelement location="${extra_lib.dir}/xdoclet-xdoclet-module-1.2.jar" />
+		<pathelement location="${extra_lib.dir}/xerces.jar" />
+		<pathelement location="${extra_lib.dir}/xjavadoc-1.1-j5-v4.jar" />
+		<pathelement location="${extra_lib.dir}/xsdlib.jar" />
+		<pathelement location="${test.src.dir}" />
+	</path>
+
+	<path id="junit.classpath">
+		<pathelement location="${cobertura.home}/cobertura.jar" />
+		<pathelement location="${cobertura.lib}/jakarta-oro-2.0.8.jar" />
+		<pathelement location="${cobertura.lib}/asm-2.2.1.jar" />
+		<pathelement location="${lib.dir}/log4j.jar" />
+	</path>
+
+
+	<!-- compile all test classes-->
+	<target name="compileTest">
+			<javac destdir="${junit.classes.dir}" includes="**/*.*" debug="on" includeAntRuntime="false" target="1.5">
+				<src path="${test.src.dir}" />
+				<classpath>
+					<fileset dir="${lib.dir}">
+						<include name="*.jar" />
+					</fileset>
+					<pathelement location="${target.dir}/classes" />
+				</classpath>
+			</javac>
+			<copy todir="${junit.classes.dir}">
+				<fileset dir="${test.src.dir}">
+					<include name="**/*.properties" />
+					<include name="**/*.xml" />
+					<include name="**/*.hbm.xml" />
+					<include name="**/*.ser" />
+				</fileset>
+			</copy>
+    </target>
+
+	<!--Create zip file of common package source files.-->
+	<target name="build_code_zip" depends="compile">
+		<delete>
+			<fileset dir="${dist.dir}" includes="**/*" />
+		</delete>
+		<zip destfile="${dist.dir}/commonpackage-${cp.jar.version}-src.zip">
+			<fileset dir="${src.dir}" includes="**/*" />
+		</zip>
+	</target>
+
+	<target name="build_jar" depends="build_code_zip, compile">
+		<tstamp />
+		<jar taskname="build_jar" jarfile="${dist.dir}/commonpackage-${cp.jar.version}.jar">
+			<fileset dir="${target.dir}/classes">
+				<include name="**/*" />
+				<exclude name="**/SqlGeneratorTestCase*" />
+				<exclude name="**/ExpressionTestCases*" />
+				<exclude name="**/JoinGraphTestCase*" />
+				<exclude name="**/CSMGroupConf.xml" />
+				<exclude name="**/Factory.xml" />
+				<exclude name="**/ApplicationResources.properties" />
+			</fileset>
+			<fileset dir="${basedir}" includes="**/ExceptionFormatter.properties" />
+			<manifest>
+				<section name="${cp.jar.details}">
+				    <attribute name="Version" value="${cp.jar.version}"/>
+					<attribute name="Built-By" value="${cp.jar.creator}" />
+					<attribute name="Build-on" value="${TODAY} ${TSTAMP}" />
+			   	   	<attribute name="SVN-URL" value="${dist.revision}" />
+			   	</section>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="initJunit">
+		<delete failonerror="false">
+			<fileset dir="${junit.report.dir}" includes="**/*" />
+		</delete>
+		<mkdir dir="${junit.report.dir}" />
+		<mkdir dir="${junit.report.dir}/Html_reports" />
+	</target>
+
+	<!-- copy all jar files to junit/lib folder-->
+	<target name="copyJarsToJunitLib">
+		<mkdir dir="${junit.dir}/lib" />
+		<copy todir="${junit.dir}/lib">
+			<fileset dir="${basedir}/lib">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+		<copy todir="${junit.dir}/lib" file="${dist.dir}/commonpackage.jar" failonerror="false"/>
+	</target>
+
+	<!-- Create junit report-->
+	<target name="createJunitReport" >
+		<junitreport todir="${junit.report.dir}/Html_reports">
+			<fileset dir="${junit.report.dir}/Html_reports">
+				<include name="TEST-*.xml" />
+			</fileset>
+			<report todir="${junit.report.dir}/Html_reports" />
+		</junitreport>
+	</target>
+	<!-- run junit test cases-->
+	<taskdef classpathref="junit.classpath" resource="tasks.properties" />
+
+	<target name="runJunitTestCases" depends="build_jar, compileTest, copyJarsToJunitLib">
+		<antcall target="initJunit"/>
+		<junit printsummary="yes" haltonerror="no" haltonfailure="no" fork="yes">
+			<formatter type="xml" />
+			<sysproperty key="net.sourceforge.cobertura.datafile" file="${basedir}/cobertura.ser" />
+			<batchtest todir="${junit.report.dir}/Html_reports">
+      			<fileset dir="${test.src.dir}">
+					<include name="**/TestAll.java"/>
+			    </fileset>
+			</batchtest>
+			<classpath>
+				<pathelement location="${test.src.dir}" />
+				<pathelement location="${junit.classes.dir}" />
+				<fileset dir="${junit.dir}/lib">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		</junit>
+		<antcall target="createJunitReport" />
+	</target>
+
+	<target name="junitForCobertura" depends="compileTest,copyJarsToJunitLib">
+			<antcall target="initJunit"/>
+			<junit printsummary="yes" haltonerror="no" haltonfailure="no" fork="yes">
+				<formatter type="xml" />
+				<sysproperty key="net.sourceforge.cobertura.datafile" file="${basedir}/cobertura.ser" />
+				<batchtest todir="${junit.report.dir}/Html_reports">
+	      			<fileset dir="${test.src.dir}">
+						<include name="**/TestAll.java"/>
+				    </fileset>
+				</batchtest>
+
+                <classpath location="${instrumented.classes.dir}" />
+				<classpath location="${target.dir}/classes" />
+
+				<classpath>
+					<pathelement location="${junit.classes.dir}" />
+					<pathelement location="${cobertura.home}/cobertura.jar" />
+					<fileset dir="${junit.dir}/lib">
+						<include name="*.jar" />
+						<exclude name="inscommonpackage.jar"/>
+						<exclude name="commonpackage-1.1.5.jar"/>
+					</fileset>
+
+				</classpath>
+			</junit>
+			<antcall target="createJunitReport" />
+		</target>
+
+	<target name="create_instrumented_jar">
+		<delete file="${dist.dir}/inscommonpackage.jar" failonerror="false"/>
+		<jar taskname="build_jar" jarfile="${dist.dir}/inscommonpackage.jar">
+			<fileset dir="${instrumented.classes.dir}">
+				<include name="**/*" />
+			</fileset>
+			<fileset dir="${basedir}" includes="**/ExceptionFormatter.properties" />
+			<manifest>
+				<attribute name="Built-At-Time" value="${TODAY} ${TSTAMP}" />
+			</manifest>
+		</jar>
+	</target>
+
+	<!-- Instrument all classes-->
+	<target name="instrument">
+		<mkdir dir="${code.coverage.report.dir}" />
+		<mkdir dir="${instrumented.classes.dir}" />
+		<cobertura-instrument todir="${instrumented.classes.dir}" >
+			<ignore regex="org.apache.log4j.*" />
+			<fileset dir="${target.dir}/classes">
+				<include name="**/*.class" />
+				<exclude name="**/*Test.class" />
+				<exclude name="**/Mock*.class" />
+			</fileset>
+		</cobertura-instrument>
+		<copy todir="${instrumented.classes.dir}">
+			<fileset dir="${src.dir}">
+				<include name="**/*.properties" />
+				<include name="**/*.xml" />
+				<include name="**/*.hbm.xml" />
+				<include name="**/*.ser" />
+				<exclude name="**/cab2b.properties"/>
+			</fileset>
+		</copy>
+		<antcall target="create_instrumented_jar" />
+		<delete file="${dist.dir}/commonpackage.jar" failonerror="false"/>
+		<copy todir="${junit.dir}/lib" file="${dist.dir}/inscommonpackage.jar"/>
+	</target>
+
+	<!-- Target to generate cobertura coverage report-->
+	<target name="cobertura_report">
+		<cobertura-report srcdir="${src.dir}" destdir="${code.coverage.report.dir}" format="xml" />
+		<delete file="${instrumented.classes.dir}/cobertura.ser" />
+	</target>
+
+	<!-- Target to run junit test cases and generate cobertura coverage report-->
+	<target name="run_nightly_build" depends="compile,databasSetup">
+		<antcall target="instrument" />
+		<antcall target="junitForCobertura" />
+		<antcall target="cobertura_report" />
+	</target>
+
+	<target name="build_exception_jar" depends="compile">
+			<tstamp />
+			<jar taskname="build_jar" jarfile="${dist.dir}/commonpkgexcepion.jar">
+				<fileset dir="${target.dir}/classes">
+					<include name="**/edu/wustl/common/exception/*" />
+				</fileset>
+				<manifest>
+					<attribute name="Built-At-Time" value="${TODAY} ${TSTAMP}" />
+				</manifest>
+			</jar>
+	</target>
+
+	<property name="applet.dir" value="${target.dir}/Applet" />
+	<!-- Compile all files, generated and hand-written -->
+		<target name="applet_compile" depends="init">
+			<delete>
+				<fileset dir="${applet.dir}">
+					<exclude name="**/CVS*" />
+					<exclude name="**/java.policy.applet*" />
+				</fileset>
+			</delete>
+
+			<javac destdir="${applet.dir}" includeAntRuntime="false" fork="yes" compiler="javac1.5">
+				<src path="${src.dir}" />
+
+				<include name="**/edu/wustl/common/tree/*.java" />
+				<include name="**/edu/wustl/common/treeApplet/*.java" />
+				<classpath>
+					<fileset dir="${lib.dir}">
+						<include name="*.jar" />
+					</fileset>
+				</classpath>
+			</javac>
+		</target>
+
+		<!-- Create the Applet JAR Begins-->
+		<target name="AppletJAR" depends="applet_compile">
+
+			<delete>
+				<fileset dir="${applet.dir}">
+					<include name="**/*.jar" />
+				</fileset>
+			</delete>
+
+			<copy todir="${applet.dir}/images">
+				<fileset dir="${res.dir}/images">
+					<include name="**/*" />
+				</fileset>
+			</copy>
+
+			<jar taskname="buildJar" jarfile="${dist.dir}/TreeApplet.jar">
+				<manifest>
+					<attribute name="Class-Path" value="swingx-2006_10_08.jar" />
+				</manifest>
+				<fileset dir="${applet.dir}">
+					<exclude name="**/CVS*" />
+					<exclude name="**/java.policy.applet*" />
+				</fileset>
+			</jar>
+		</target>
+		<!-- Create the Applet JAR Ends-->
+
+		<target name="databasSetup">
+			<if>
+				<equals arg1="mysql" arg2="${database.type}"/>
+				<then>
+					<antcall target="databasSetup_mysql"/>
+				</then>
+				<elseif>
+					<equals arg1="oracle" arg2="${database.type}"/>
+					<then>
+						<antcall target="databasSetup_oracle"/>
+					</then>
+				</elseif>
+			</if>
+		</target>
+
+		<target name="databasSetup_mysql">
+			<echo message="Database set up for mysql..."/>
+			<sql driver="${mysql.driver.string}" url="jdbc:mysql://${database.host}:${database.port}/${database.name}" userid="${database.username}" password="${database.password}" >
+				<transaction src="/db/MySQL/createUser.sql" />
+				<transaction>commit;</transaction>
+				<classpath>
+					<fileset dir="${lib.dir}">
+						<include name="*.jar" />
+					</fileset>
+				</classpath>
+			</sql>
+		</target>
+
+		<target name="databasSetup_oracle">
+			<sql driver="${oracle.driver.string}" url="jdbc:oracle:thin:@${database.host}:${database.port}:${database.name}" userid="${database.username}" password="${database.password}" rdbms="oracle">
+				<transaction src="/db/Oracle/createUser.sql" />
+				<transaction>commit;</transaction>
+				<classpath>
+					<fileset dir="${lib.dir}">
+						<include name="*.jar" />
+					</fileset>
+				</classpath>
+			</sql>
+		</target>
+
 </project>
