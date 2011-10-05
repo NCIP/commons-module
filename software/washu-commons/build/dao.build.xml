@@ -1,0 +1,70 @@
+<?xml version ="1.0"?>
+
+<!--Ant Script for create Build for DAO -->
+<project name="DAO" default="build_jar">
+
+    <property file="../src/main/resources/DAO.properties"/>
+	<property name="base.dir" value=".." />
+	<property name="lib.dir" value="../src/lib" />
+	<property name="dist.dir" value="${base.dir}/dist" />
+	<property name="src.dir" value="${base.dir}/src/main/java" />
+	<property name="target.dir" value="${base.dir}/target/classes" />
+
+	<target name="compile" depends="init">
+		<echo> Compiling DAO source code : </echo>
+        <javac destdir="${target.dir}" includes="**/*.*" debug="on" includeAntRuntime="false" target="1.5" nowarn="true">
+            <src path="${src.dir}" />
+            <classpath>
+                <fileset dir="../src/lib">
+                    <include name="*.jar" />
+                </fileset>
+            </classpath>
+        </javac>
+        <copy todir="${target.dir}">
+            <fileset dir="${src.dir}">
+                <include name="**/*.properties" />
+                <include name="**/*.xml" />
+                <include name="**/*.hbm.xml" />
+                <include name="**/*.ser" />
+            </fileset>
+        </copy>
+    </target>
+
+	<!-- sub tasks -->
+    <target name="init">
+        <tstamp />
+        <delete dir="${target.dir}" />
+        <mkdir dir="${target.dir}" />
+        <mkdir dir="${dist.dir}" />
+    </target>
+	
+	<target name="build_jar" depends="compile">
+		<echo>Building project jar : </echo>
+		<delete>
+				<fileset dir="${dist.dir}" includes="**/*" />
+			</delete>
+			<tstamp />
+			<jar taskname="build_jar" jarfile="${dist.dir}/DAO-${DAO.jar.version}.jar">
+				<fileset dir="${target.dir}">
+					<include name="**/*" />
+				</fileset>
+				<manifest>
+   	   				<section name="${DAO.jar.details}">
+   	   			    <attribute name="Version" value="${DAO.jar.version}"/>
+   	   			   	<attribute name="Built-By" value="${DAO.jar.creator}" />   	   			   	   					
+					<attribute name="Build-on" value="${TODAY} ${TSTAMP}" />
+   	   				<attribute name="SVN-URL" value="${dist.revision}" />
+   	   	   	    	</section>   	   					
+				</manifest>
+			</jar>
+			<antcall target="build_code_zip" />
+	</target>
+
+	<target name="build_code_zip" depends="compile">
+		<echo> Building project installable zip : </echo>
+			<zip destfile="${dist.dir}/DAO-${DAO.jar.version}-src.zip">
+				<fileset dir="${src.dir}" includes="**/*" />
+			</zip>
+	</target>
+
+</project>
