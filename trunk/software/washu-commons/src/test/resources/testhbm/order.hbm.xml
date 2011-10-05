@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+    <class
+        name="test.Order"
+        table="test_order"
+        lazy="true"
+    >
+     <cache usage="read-write" />
+    
+   <id
+            name="id"
+            column="IDENTIFIER"
+            type="long"
+            length="30"
+            unsaved-value="null"
+        >
+            <generator class="native">
+                <param name="sequence">ORDER_SEQ</param>
+              <!--  
+                  To add non XDoclet generator parameters, create a file named 
+                  hibernate-generator-params-User.xml 
+                  containing the additional parameters and place it in your merge dir. 
+              --> 
+            </generator>
+    </id>
+
+    <many-to-one
+            name="person"
+            class="test.Person"
+            cascade="none"
+             
+            update="true"
+            insert="true"
+            column="person_id"  
+        />
+       
+     <many-to-one
+            name="user"
+            class="test.User"
+            cascade="none"
+             
+            update="true"
+            insert="true"
+            column="user_id"  
+        />   
+  
+    </class>
+
+</hibernate-mapping>
