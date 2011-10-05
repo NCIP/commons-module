@@ -3,6 +3,7 @@ package edu.wustl.common.factory;
 import edu.wustl.common.actionForm.AbstractActionForm;
 import edu.wustl.common.bizlogic.IBizLogic;
 import edu.wustl.common.domain.AbstractDomainObject;
+import edu.wustl.common.domain.UIRepOfDomain;
 import edu.wustl.common.exception.ApplicationException;
 import edu.wustl.common.exception.AssignDataException;
 import edu.wustl.common.util.AbstractForwardToProcessor;
@@ -10,7 +11,14 @@ import edu.wustl.common.util.AbstractForwardToProcessor;
 
 public class MyBizLogicFactory implements IFactory,IForwordToFactory,IDomainObjectFactory
 {
-	public IBizLogic getBizLogic(int formId)
+    public AbstractDomainObject createDomainObject(UIRepOfDomain uiRepOfDomain) throws AssignDataException {
+        return null;
+    }
+
+    public void overwriteDomainObject(AbstractDomainObject domainObject, UIRepOfDomain uiRep) throws AssignDataException {
+    }
+
+    public IBizLogic getBizLogic(int formId)
 	{
 		return null;
 	}

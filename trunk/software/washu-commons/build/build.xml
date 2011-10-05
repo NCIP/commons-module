@@ -191,25 +191,31 @@
 	</path>
 
 
-	<!-- compile all test classes-->
 	<target name="compileTest">
-			<javac destdir="${junit.classes.dir}" includes="**/*.*" debug="on" includeAntRuntime="false" target="1.5">
-				<src path="${test.src.dir}" />
-				<classpath>
-					<fileset dir="${lib.dir}">
-						<include name="*.jar" />
-					</fileset>
-					<pathelement location="${target.dir}/classes" />
-				</classpath>
-			</javac>
-			<copy todir="${junit.classes.dir}">
-				<fileset dir="${test.src.dir}">
-					<include name="**/*.properties" />
-					<include name="**/*.xml" />
-					<include name="**/*.hbm.xml" />
-					<include name="**/*.ser" />
-				</fileset>
-			</copy>
+        <javac destdir="${junit.classes.dir}" includes="**/*.*" debug="on" includeAntRuntime="false" target="1.5">
+            <src path="${test.src.dir}" />
+            <classpath>
+                <fileset dir="${lib.dir}">
+                    <include name="*.jar" />
+                </fileset>
+                <pathelement location="${target.dir}/classes" />
+            </classpath>
+        </javac>
+        <copy todir="${junit.classes.dir}">
+            <fileset dir="${test.src.dir}">
+                <include name="**/*.properties" />
+                <include name="**/*.xml" />
+                <include name="**/*.hbm.xml" />
+                <include name="**/*.ser" />
+            </fileset>
+            <fileset dir="${test.res.dir}">
+                <include name="**/*.properties" />
+                <include name="**/*.xml" />
+                <include name="**/*.hbm.xml" />
+                <include name="**/*.ser" />
+            </fileset>
+        </copy>
+        <antcall target="update:hibernate-cfg"></antcall>
     </target>
 
 	<!--Create zip file of common package source files.-->
