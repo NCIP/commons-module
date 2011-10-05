@@ -229,6 +229,7 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/branches/automation-1.7.4
 	<target name="clean">
 		<delete dir="${dist.dir}" />
 		<delete dir="${temp.dir}" />
+		<delete dir="${target.dir}" failonerror="false"/>
 	</target>
 
 	<target name="init" description="Sets up build are and initalizes variables">
@@ -327,7 +328,11 @@ $HeadURL: http://gforge.nci.nih.gov/svnroot/automation/branches/automation-1.7.4
 
 	<target name="build:washu-commons-webapp" depends="init, build:washu-commons-api" description="Call webapp sub-projects build target to produce artifiacts">
 		<!-- setting the property in the ant call overrides the property in the sub-project allowing the artifact to be produced where needed -->
-		<ant inheritAll="false" inheritRefs="false" antfile="${washu-commons-webapp.build.file}" target="${washu-commons-webapp.build.target}" dir="${washu-commons-webapp.base.dir}/build">
+		<ant inheritAll="false" inheritRefs="false"
+             antfile="${washu-commons-webapp.base.dir}/build/${washu-commons-webapp.build.file}"
+             target="${washu-commons-webapp.build.target}"
+             dir="${washu-commons-webapp.base.dir}">
+
 			<property name="dist.dir" value="${washu-commons-webapp.dist.dir}" />
 			<property name="env.GLOBUS_LOCATION" value="${env.GLOBUS_LOCATION}"/>
 			<property name="commonlibrary.dir" value="${commonlibrary.dir}"/>
