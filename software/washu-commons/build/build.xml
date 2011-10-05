@@ -43,13 +43,14 @@
     <property name="metadatatest.report.dir" value="${metadatatest.dir}/Report" />
     <property name="oracle.driver.string" value="oracle.jdbc.driver.OracleDriver" />
     <property name="mysql.driver.string" value="org.gjt.mm.mysql.Driver" />
-    <property name="dist.revision" value="TEMP SVN REVISION" />
 
+    <!-- SVN URL -->
     <loadfile property="dist.revision" srcFile="./.svn/entries">
         <filterchain>
             <headfilter lines="1" skip="4"/>
         </filterchain>
     </loadfile>
+    <property name="dist.revision" value="${dist.revision}" />
 
 <!--TARGETS-->
 
