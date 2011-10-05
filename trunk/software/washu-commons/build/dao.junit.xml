@@ -1,5 +1,8 @@
 <?xml version ="1.0"?>
-
+<!--
+THIS FILE IS NOT USED FOR BUILD/TEST,
+ALL TASK WERE MIGRATED TO BUILD.XML
+-->
 <project name="DAOJUnits" default="compileDaoTestCases">
 
     <property name="base.dir" value="../" />
