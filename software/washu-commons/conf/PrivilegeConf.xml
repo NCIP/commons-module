@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<privileges>
+	<privilege name="READ">
+		<bit-number>0</bit-number>
+		<role-name>READ</role-name>
+	</privilege>
+	<privilege name="READ_DENIED">
+		<bit-number>1</bit-number>
+		<role-name>READ_DENIED</role-name>
+	</privilege>
+	<privilege name="UPDATE">
+		<bit-number>2</bit-number>
+		<role-name>UPDATE</role-name>
+	</privilege>
+</privileges>
