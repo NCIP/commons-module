@@ -12,6 +12,7 @@
     <property file="${basedir}/conf/washu-commons.properties"/>
     <property file="${basedir}/conf/commonpackage.properties"/>
     <property file="${basedir}/conf/mail.properties"></property>
+    <property file="${basedir}/src/main/resources/DAO.properties"/>
 
 	<property name="src.dir" value="${basedir}/src/main/java" />
 	<property name="dist.dir" value="${basedir}/dist" />
@@ -109,11 +110,10 @@
 
 	</target>
 
-	<target name="dist" depends="build.jar, build.src.zip"/>
+	<target name="dist" depends="build.jar, build.src.zip" />
 
 	<target name="build.jar" depends="compile">
 		<tstamp />
-        <echo message="BASE: ${basedir}" />
 		<jar jarfile="${local-ivy-repo.dir}/washu-commons-${wc.jar.version}.jar" basedir="${target.dir}/classes">
 			<manifest>
 				<section name="${wc.jar.details}">
@@ -124,13 +124,15 @@
 			  	</section>
 			</manifest>
 		</jar>
+        <copy file="${local-ivy-repo.dir}/washu-commons-${wc.jar.version}.jar" todir="${dist.dir}" />
 	</target>
 
 	<target name="build.src.zip">
-		<copy todir="${dist.dir}">
+		<mkdir dir="${target.dir}/sources" />
+        <copy todir="${target.dir}/sources">
 			<fileset dir="${src.dir}" includes="**/*" />
 		</copy>
-        <jar jarfile="${local-ivy-repo.dir}/washu-commons-${wc.jar.version}.src.jar" basedir="${dist.dir}">
+        <jar jarfile="${local-ivy-repo.dir}/washu-commons-${wc.jar.version}.src.jar" basedir="${target.dir}/sources">
             <manifest>
                 <section name="${wc.jar.details}">
                     <attribute name="Version" value="${wc.jar.version}"/>
@@ -140,7 +142,7 @@
                   </section>
             </manifest>
         </jar>
-        <delete dir="${dist.dir}" />
+        <copy file="${local-ivy-repo.dir}/washu-commons-${wc.jar.version}.src.jar" todir="${dist.dir}" />
 	</target>
 
     <target name="testSendMailWithAuthentication" depends="compile" description="Sends the Mail after authentication of the sender">
