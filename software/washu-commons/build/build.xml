@@ -28,6 +28,8 @@
 
     <property file="${test.res.dir}/junitConf.properties"/>
 
+    <property name="project.test" value="${basedir}/src/test/"/>
+
     <property name="target.dir" value="${basedir}/target" />
     <property name="lib.dir" value="${basedir}/lib" />
     <property name="dist.dir" value="${basedir}/dist" />
@@ -44,6 +46,23 @@
     <property name="metadatatest.report.dir" value="${metadatatest.dir}/Report" />
     <property name="oracle.driver.string" value="oracle.jdbc.driver.OracleDriver" />
     <property name="mysql.driver.string" value="org.gjt.mm.mysql.Driver" />
+
+    <property name="mysql.driver.string" value="com.mysql.jdbc.Driver" />
+    <property name="oracle.driver.string" value="oracle.jdbc.driver.OracleDriver"/>
+    <property name="oracle.dialect.string" value="org.hibernate.dialect.Oracle9Dialect" />
+    <property name="mysql.dialect.string" value="org.hibernate.dialect.MySQLDialect" />
+    <property file="${basedir}/src/test/resources/DAOInstall.properties"/>
+    <property name="mysql.dao.prop.filename" value="MySQLDAOProperties.xml" />
+    <property name="oracle.dao.prop.filename" value="OracleDAOProperties.xml" />
+
+    <property name="test.instrumented.dir" value="${target.dir}/instrument"/>
+    <property name="cobertura.location" value="${basedir}"/>
+    <path id="cobertura.classpath">
+        <fileset dir="${cobertura.lib}">
+            <include name="cobertura.jar" />
+            <include name="**/*.jar" />
+        </fileset>
+	</path>
 
     <!-- SVN URL -->
     <loadfile property="dist.revision" srcFile="./.svn/entries">
@@ -485,5 +504,257 @@
 				</classpath>
 			</sql>
 		</target>
+
+
+    <!--DAO-->
+
+    <target name="update:hibernate-cfg">
+        <if>
+            <equals arg1="mysql" arg2="${database.type}"/>
+            <then>
+                <antcall target="update:hibernate-cfg-mysql"/>
+                <replace file="${junit.classes.dir}/ApplicationDAOProperties.xml">
+                    <replacefilter token="${oracle.dao.prop.filename}" value="${mysql.dao.prop.filename}"/>
+                </replace>
+            </then>
+            <elseif>
+                <equals arg1="oracle" arg2="${database.type}"/>
+                <then>
+                    <antcall target="update:hibernate-cfg-oracle"/>
+                    <replace file="${junit.classes.dir}/ApplicationDAOProperties.xml">
+                        <replacefilter token="${mysql.dao.prop.filename}" value="${oracle.dao.prop.filename}"/>
+                    </replace>
+                </then>
+            </elseif>
+            <else>
+                <echo message="DATABASE INITIALIZATION FAILED PLEASE CHECK DATABASE.TYPE PROPERTY" level="error"/>
+            </else>
+        </if>
+    </target>
+
+    <target name="update:hibernate-cfg-mysql">
+        <echo message="Updating hibernate.cfg.xml file for mysql..."/>
+        <replace dir="${junit.classes.dir}" propertyfile="${basedir}/src/test/resources/DAOInstall.properties">
+            <include name="hibernate.cfg.xml"/>
+            <replacefilter token="@@dialect@@" value="${mysql.dialect.string}"/>
+            <replacefilter token="@@driver@@" value="${mysql.driver.string}"/>
+            <replacefilter token="@@url@@" value="jdbc:mysql://${database.host}:${database.port}/${database.name}"/>
+            <replacefilter token="@@username@@" value="${database.username}"/>
+            <replacefilter token="@@password@@" value="${database.password}"/>
+        </replace>
+    </target>
+
+    <target name="update:hibernate-cfg-oracle">
+        <echo message="Updating hibernate.cfg.xml file for oracle..."/>
+        <replace dir="${junit.classes.dir}" propertyfile="${basedir}/src/test/resources/DAOInstall.properties">
+            <include name="hibernate.cfg.xml"/>
+            <replacefilter token="@@dialect@@" value="${oracle.dialect.string}"/>
+            <replacefilter token="@@driver@@" value="${oracle.driver.string}"/>
+            <replacefilter token="@@url@@"
+                           value="jdbc:oracle:thin:@${database.host}:${database.port}:${database.name}"/>
+            <replacefilter token="@@username@@" value="${database.username}"/>
+            <replacefilter token="@@password@@" value="${database.password}"/>
+        </replace>
+
+    </target>
+
+    <target name="deploy:db">
+        <if>
+            <equals arg1="mysql" arg2="${database.type}"/>
+            <then>
+                <antcall target="create:deploy-db-mysql"/>
+            </then>
+
+            <elseif>
+                <equals arg1="oracle" arg2="${database.type}"/>
+                <then>
+                    <antcall target="create:deploy-db-oracle"/>
+                </then>
+            </elseif>
+            <else>
+                <echo message="DATABASE INITIALIZATION FAILED PLEASE CHECK DATABASE.TYPE PROPERTY" level="error"/>
+            </else>
+        </if>
+    </target>
+
+    <target name="create:deploy-db-mysql">
+        <antcall target="create:db-mysql"/>
+        <antcall target="deploy:db-mysql"/>
+    </target>
+
+    <target name="create:db-oracle">
+        <echo message="Initializing Oracle Database for caTISSUECore Client Application..."/>
+            <sql
+                    driver="${oracle.driver.string}"
+                    url="jdbc:oracle:thin:@${database.host}:${database.port}:${database.name}"
+                      userid="${database.tempusername}"
+                    password="${database.temppassword}"
+                       onerror="continue"
+                    rdbms="oracle">
+                    <classpath>
+                        <fileset dir="${basedir}/src/lib">
+                            <include name="*.jar"/>
+                        </fileset>
+                    </classpath>
+                    DROP USER ${database.username} CASCADE;
+                    CREATE USER ${database.username} IDENTIFIED BY ${database.password} DEFAULT TABLESPACE "${database.tablespace}" TEMPORARY TABLESPACE "${database.temptablespace}" QUOTA UNLIMITED ON "${database.tablespace}";
+                    GRANT CONNECT, RESOURCE TO ${database.username};
+                    GRANT DBA TO ${database.username};
+                    ALTER USER ${database.username} DEFAULT ROLE ALL;
+            </sql>
+    </target>
+
+    <target name="deploy:db-oracle">
+                <echo message="Initializing Oracle Database for DAO..." />
+                <sql driver="${oracle.driver.string}"
+                    url="jdbc:oracle:thin:@${database.host}:${database.port}:${database.name}"
+                    userid="${database.username}" password="${database.password}"
+                    onerror="continue"
+                    rdbms="oracle">
+                    <transaction src="${basedir}/db/dbcreation_oracle.sql" />
+                    <transaction>commit;</transaction>
+                    <classpath>
+                        <fileset dir="${basedir}/src/lib">
+                            <include name="*.jar" />
+                        </fileset>
+                    </classpath>
+                </sql>
+    </target>
+
+    <target name="create:deploy-db-oracle">
+        <antcall target="create:db-oracle"/>
+        <antcall target="deploy:db-oracle"/>
+    </target>
+
+    <target name="CodeCoverage">
+        <antcall target="instrument"/>
+        <antcall target="runJunitTestCases"/>
+        <antcall target="coverage-report"/>
+    </target>
+
+    <target name="create:db-mysql">
+            <echo message="Creating Mysql Database..."/>
+            <sql
+                driver="${mysql.driver.string}"
+                url="jdbc:mysql://${database.host}:${database.port}/mysql"
+                userid="${database.username}"
+                password="${database.password}"
+                onerror="continue">
+                <classpath>
+                    <fileset dir="${basedir}/src/lib">
+                          <include name="*.jar"/>
+                    </fileset>
+                </classpath>
+                DROP DATABASE ${database.name};
+                CREATE DATABASE ${database.name};
+            </sql>
+    </target>
+
+    <target name="deploy:db-mysql">
+            <echo message="Initializing MySQL Database for DAO..." />
+            <sql driver="${mysql.driver.string}" url="jdbc:mysql://${database.host}:${database.port}/${database.name}" userid="${database.username}" password="${database.password}" onerror="continue" >
+                <transaction src="${basedir}/db/dbcreation_mysql.sql" />
+
+                <transaction>commit;</transaction>
+                <classpath>
+                    <fileset dir="${basedir}/src/lib">
+                        <include name="*.jar" />
+                    </fileset>
+                </classpath>
+            </sql>
+    </target>
+
+<!--
+    <target name="instrument" depends="init, compile">
+        <echo>Instrumenting the application classes : </echo>
+            <delete file="${cobertura.location}/cobertura.ser"/>
+            <cobertura-instrument todir="${test.instrumented.dir}">
+                <classpath>
+                    <fileset dir="${basedir}/src/lib">
+                        <include name="**/*.jar"/>
+                    </fileset>
+                </classpath>
+                <ignore regex="org.apache.log4j.*" />
+                <fileset dir="${target.dir}/classes">
+                    <include name="**/*.class" />
+                </fileset>
+            </cobertura-instrument>
+    </target>
+-->
+
+    <target name="coverage-report">
+        <echo> Generating coverage reports :</echo>
+        <mkdir dir="${target.dir}/reports/daoCodeCoverageXml"/>
+        <mkdir dir="${target.dir}/reports/daoCodeCoverageHtml"/>
+
+        <!--
+            Generate an XML file containing the coverage data using
+            the "srcdir" attribute.
+        -->
+
+        <cobertura-report srcdir="${src.dir}" destdir="${target.dir}/reports/daoCodeCoverageXml" format="xml" />
+
+        <!--
+                Generate a series of HTML files containing the coverage
+                data in a user-readable form using nested source filesets.
+        -->
+        <cobertura-report destdir="${target.dir}/reports/daoCodeCoverageHtml">
+            <fileset dir="${src.dir}">
+                <include name="**/*.java"/>
+            </fileset>
+        </cobertura-report>
+    </target>
+
+<!--
+    <target name="runJunitTestCases" depends="runDAOTestCases">
+        <echo>Executing Junit test cases : </echo>
+       <junitreport todir="${target.dir}/reports/daoTestReports">
+           <fileset dir="${target.dir}/reports/daoTestReports">
+               <include name="TEST-*.xml" />
+           </fileset>
+           <report todir="${target.dir}/reports/daoTestReports/HtmlReports" />
+       </junitreport>
+   </target>
+-->
+
+    <target name="runDAOTestCases" depends="instrument, compileTest">
+        <echo>Executing DAO test cases : </echo>
+        <mkdir dir="${target.dir}/reports/daoTestReports"/>
+        <mkdir dir="${target.dir}/reports/daoTestReports/HtmlReports"/>
+
+        <junit printsummary="yes" fork="yes">
+            <formatter type="xml" />
+             <sysproperty key="net.sourceforge.cobertura.datafile" file="${cobertura.location}/cobertura.ser" />
+
+            <!--	Note the classpath order: instrumented classes are before the
+                original (uninstrumented) classes.  This is important.
+            -->
+
+            <classpath location="${test.instrumented.dir}" />
+            <classpath location="${target.dir}/classes}" />
+
+            <classpath>
+                <fileset dir="${basedir}/src/lib">
+                    <exclude name="DAO-1.1.5.jar"/>
+                    <include name="*.jar"/>
+                </fileset>
+            </classpath>
+
+            <classpath>
+                <pathelement path="${project.test}/java" />
+                <pathelement path= "${junit.classes.dir}" />
+                <!--<pathelement path = "C:/Program Files/YourKit Java Profiler 7.0.11/bin/win32" />-->
+            </classpath>
+
+            <classpath refid="cobertura.classpath" />
+
+            <batchtest fork="yes" todir="${target.dir}/reports/daoTestReports">
+                <fileset dir="${project.test}/java">
+                    <include name="**/DAOTestSuite.java" />
+                </fileset>
+            </batchtest>
+        </junit>
+
+    </target>
 
 </project>
