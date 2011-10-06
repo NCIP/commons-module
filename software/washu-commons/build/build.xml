@@ -77,6 +77,7 @@
 
 	<target name="clean">
         <delete dir="${target.dir}" failonerror="false" />
+        <delete dir="${dist.dir}" failonerror="false" />
         <delete dir="${junit.dir}" failonerror="false"/>
         <delete dir="${junit.classes.dir}" failonerror="false"/>
 	</target>
