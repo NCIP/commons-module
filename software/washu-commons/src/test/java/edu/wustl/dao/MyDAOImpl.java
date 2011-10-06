@@ -3,6 +3,7 @@ package edu.wustl.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -796,8 +797,7 @@ public class MyDAOImpl implements DAO, HibernateDAO, IDAOFactory, JDBCDAO, IConn
 	 * @return StatementData.
 	 * @throws DAOException throw DAOException.
 	 */
-	public StatementData executeUpdate(String tableName,
-			LinkedList<ColumnValueBean> columnValueBeanSet) throws DAOException
+	public StatementData executeUpdate(String tableName, LinkedList<ColumnValueBean> columnValueBeanSet) throws DAOException
 			{
 		// TODO Auto-generated method stub
 		return null;
@@ -968,4 +968,19 @@ public class MyDAOImpl implements DAO, HibernateDAO, IDAOFactory, JDBCDAO, IConn
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+    public List executeQuery(String query, List<ColumnValueBean> columnValueBeans, int maxResults) throws DAOException {
+        return null;
+    }
+
+    public void merge(Object objectToBeMerged) {
+    }
+
+    public void closeConnection(Connection connObj) throws DAOException {
+        try {
+            connObj.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
