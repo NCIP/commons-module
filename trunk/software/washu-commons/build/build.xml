@@ -654,7 +654,6 @@
             <echo message="Initializing MySQL Database for DAO..." />
             <sql driver="${mysql.driver.string}" url="jdbc:mysql://${database.host}:${database.port}/${database.name}" userid="${database.username}" password="${database.password}" onerror="continue" >
                 <transaction src="${basedir}/db/dbcreation_mysql.sql" />
-
                 <transaction>commit;</transaction>
                 <classpath>
                     <fileset dir="${basedir}/src/lib">
@@ -665,6 +664,7 @@
     </target>
 
 <!--
+    DAO
     <target name="instrument" depends="init, compile">
         <echo>Instrumenting the application classes : </echo>
             <delete file="${cobertura.location}/cobertura.ser"/>
@@ -706,6 +706,7 @@
     </target>
 
 <!--
+    DAO
     <target name="runJunitTestCases" depends="runDAOTestCases">
         <echo>Executing Junit test cases : </echo>
        <junitreport todir="${target.dir}/reports/daoTestReports">
