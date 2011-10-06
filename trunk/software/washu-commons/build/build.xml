@@ -23,12 +23,10 @@
 
     <property name="src.dir" value="${basedir}/src/main/java" />
     <property name="res.dir" value="${basedir}/src/main/resources" />
-    <property name="test.src.dir" value="${basedir}/src/test/java" />
-    <property name="test.res.dir" value="${basedir}/src/test/resources" />
 
-    <property file="${test.res.dir}/junitConf.properties"/>
 
     <property name="project.test" value="${basedir}/src/test/"/>
+    <property file="${project.test}/resources/junitConf.properties"/>
 
     <property name="target.dir" value="${basedir}/target" />
     <property name="lib.dir" value="${basedir}/lib" />
@@ -39,9 +37,8 @@
     <property name="junit.report.dir" value="${junit.dir}/reports" />
     <property name="junit.classes.dir" value="${junit.dir}/classes" />
     <property name="code.coverage.report.dir" value="${junit.dir}/coverage-reports" />
-    <property name="instrumented.classes.dir" value="${junit.dir}/instrumented-classes" />
-    <property name="cobertura.home" value="${basedir}/cobertura"/>
-    <property name="cobertura.lib" value="${cobertura.home}/lib"/>
+    <property name="instrumented.classes.dir" value="${target.dir}/instrument" />
+    <property name="cobertura.dir" value="${basedir}/src/cobertura"/>
     <property name="metadatatest.dir" value="/conf/metadataTestReport" />
     <property name="metadatatest.report.dir" value="${metadatatest.dir}/Report" />
     <property name="oracle.driver.string" value="oracle.jdbc.driver.OracleDriver" />
@@ -55,10 +52,9 @@
     <property name="mysql.dao.prop.filename" value="MySQLDAOProperties.xml" />
     <property name="oracle.dao.prop.filename" value="OracleDAOProperties.xml" />
 
-    <property name="test.instrumented.dir" value="${target.dir}/instrument"/>
     <property name="cobertura.location" value="${basedir}"/>
     <path id="cobertura.classpath">
-        <fileset dir="${cobertura.lib}">
+        <fileset dir="${cobertura.dir}">
             <include name="cobertura.jar" />
             <include name="**/*.jar" />
         </fileset>
@@ -202,20 +198,20 @@
 		<pathelement location="${extra_lib.dir}/xerces.jar" />
 		<pathelement location="${extra_lib.dir}/xjavadoc-1.1-j5-v4.jar" />
 		<pathelement location="${extra_lib.dir}/xsdlib.jar" />
-		<pathelement location="${test.src.dir}" />
+		<pathelement location="${project.test}/java" />
 	</path>
 
 	<path id="junit.classpath">
-		<pathelement location="${cobertura.home}/cobertura.jar" />
-		<pathelement location="${cobertura.lib}/jakarta-oro-2.0.8.jar" />
-		<pathelement location="${cobertura.lib}/asm-2.2.1.jar" />
+		<pathelement location="${cobertura.dir}/cobertura.jar" />
+		<pathelement location="${cobertura.dir}/jakarta-oro-2.0.8.jar" />
+		<pathelement location="${cobertura.dir}/asm-2.2.1.jar" />
 		<pathelement location="${lib.dir}/log4j.jar" />
 	</path>
 
 
 	<target name="compileTest">
         <javac destdir="${junit.classes.dir}" includes="**/*.*" debug="on" includeAntRuntime="false" target="1.5">
-            <src path="${test.src.dir}" />
+            <src path="${project.test}/java" />
             <classpath>
                 <fileset dir="${lib.dir}">
                     <include name="*.jar" />
@@ -224,13 +220,13 @@
             </classpath>
         </javac>
         <copy todir="${junit.classes.dir}">
-            <fileset dir="${test.src.dir}">
+            <fileset dir="${project.test}/java">
                 <include name="**/*.properties" />
                 <include name="**/*.xml" />
                 <include name="**/*.hbm.xml" />
                 <include name="**/*.ser" />
             </fileset>
-            <fileset dir="${test.res.dir}">
+            <fileset dir="${project.test}/resources">
                 <include name="**/*.properties" />
                 <include name="**/*.xml" />
                 <include name="**/*.hbm.xml" />
@@ -274,50 +270,56 @@
 		</jar>
 	</target>
 
-	<target name="initJunit">
+	<target name="initJUnit">
 		<delete failonerror="false">
 			<fileset dir="${junit.report.dir}" includes="**/*" />
 		</delete>
-		<mkdir dir="${junit.report.dir}" />
-		<mkdir dir="${junit.report.dir}/Html_reports" />
+		<mkdir dir="${target.dir}/reports/TestReports" />
 	</target>
 
 	<!-- copy all jar files to junit/lib folder-->
-	<target name="copyJarsToJunitLib">
+	<target name="copyJarsToJUnitLib">
 		<mkdir dir="${junit.dir}/lib" />
 		<copy todir="${junit.dir}/lib">
-			<fileset dir="${basedir}/lib">
+			<fileset dir="${basedir}/src/lib">
 				<include name="**/*.jar" />
 			</fileset>
 		</copy>
 		<copy todir="${junit.dir}/lib" file="${dist.dir}/commonpackage.jar" failonerror="false"/>
 	</target>
 
-	<!-- Create junit report-->
 	<target name="createJunitReport" >
-		<junitreport todir="${junit.report.dir}/Html_reports">
-			<fileset dir="${junit.report.dir}/Html_reports">
+		<junitreport todir="${target.dir}/reports/TestReports">
+			<fileset dir="${target.dir}/reports/TestReports">
 				<include name="TEST-*.xml" />
 			</fileset>
-			<report todir="${junit.report.dir}/Html_reports" />
+			<report todir="${target.dir}/reports/TestReports" />
 		</junitreport>
 	</target>
-	<!-- run junit test cases-->
+
 	<taskdef classpathref="junit.classpath" resource="tasks.properties" />
 
-	<target name="runJunitTestCases" depends="build_jar, compileTest, copyJarsToJunitLib">
-		<antcall target="initJunit"/>
+	<target name="runJUnitTests" depends="build_jar, compileTest, copyJarsToJUnitLib">
+		<antcall target="initJUnit"/>
 		<junit printsummary="yes" haltonerror="no" haltonfailure="no" fork="yes">
 			<formatter type="xml" />
 			<sysproperty key="net.sourceforge.cobertura.datafile" file="${basedir}/cobertura.ser" />
-			<batchtest todir="${junit.report.dir}/Html_reports">
-      			<fileset dir="${test.src.dir}">
+
+			<batchtest todir="${target.dir}/reports/TestReports">
+      			<fileset dir="${project.test}/java">
 					<include name="**/TestAll.java"/>
 			    </fileset>
 			</batchtest>
+            <batchtest fork="yes" todir="${target.dir}/reports/TestReports">
+                <fileset dir="${project.test}/java">
+                    <include name="**/DAOTestSuite.java" />
+                </fileset>
+            </batchtest>
+
 			<classpath>
-				<pathelement location="${test.src.dir}" />
+				<pathelement location="${project.test}/java" />
 				<pathelement location="${junit.classes.dir}" />
+				<pathelement location="${target.dir}/classes" />
 				<fileset dir="${junit.dir}/lib">
 					<include name="*.jar" />
 				</fileset>
@@ -326,13 +328,13 @@
 		<antcall target="createJunitReport" />
 	</target>
 
-	<target name="junitForCobertura" depends="compileTest,copyJarsToJunitLib">
-			<antcall target="initJunit"/>
+	<target name="junitForCobertura" depends="compileTest,copyJarsToJUnitLib">
+			<antcall target="initJUnit"/>
 			<junit printsummary="yes" haltonerror="no" haltonfailure="no" fork="yes">
 				<formatter type="xml" />
 				<sysproperty key="net.sourceforge.cobertura.datafile" file="${basedir}/cobertura.ser" />
-				<batchtest todir="${junit.report.dir}/Html_reports">
-	      			<fileset dir="${test.src.dir}">
+				<batchtest todir="${target.dir}/reports/TestReports">
+	      			<fileset dir="${project.test}/java">
 						<include name="**/TestAll.java"/>
 				    </fileset>
 				</batchtest>
@@ -342,7 +344,7 @@
 
 				<classpath>
 					<pathelement location="${junit.classes.dir}" />
-					<pathelement location="${cobertura.home}/cobertura.jar" />
+					<pathelement location="${cobertura.dir}/cobertura.jar" />
 					<fileset dir="${junit.dir}/lib">
 						<include name="*.jar" />
 						<exclude name="inscommonpackage.jar"/>
@@ -372,6 +374,11 @@
 		<mkdir dir="${code.coverage.report.dir}" />
 		<mkdir dir="${instrumented.classes.dir}" />
 		<cobertura-instrument todir="${instrumented.classes.dir}" >
+            <classpath>
+                <fileset dir="${basedir}/src/lib">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
 			<ignore regex="org.apache.log4j.*" />
 			<fileset dir="${target.dir}/classes">
 				<include name="**/*.class" />
@@ -553,8 +560,7 @@
             <include name="hibernate.cfg.xml"/>
             <replacefilter token="@@dialect@@" value="${oracle.dialect.string}"/>
             <replacefilter token="@@driver@@" value="${oracle.driver.string}"/>
-            <replacefilter token="@@url@@"
-                           value="jdbc:oracle:thin:@${database.host}:${database.port}:${database.name}"/>
+            <replacefilter token="@@url@@" value="jdbc:oracle:thin:@${database.host}:${database.port}:${database.name}"/>
             <replacefilter token="@@username@@" value="${database.username}"/>
             <replacefilter token="@@password@@" value="${database.password}"/>
         </replace>
@@ -631,7 +637,7 @@
 
     <target name="CodeCoverage">
         <antcall target="instrument"/>
-        <antcall target="runJunitTestCases"/>
+        <antcall target="runJUnitTests"/>
         <antcall target="coverage-report"/>
     </target>
 
@@ -642,13 +648,13 @@
                 url="jdbc:mysql://${database.host}:${database.port}/mysql"
                 userid="${database.username}"
                 password="${database.password}"
-                onerror="continue">
+                onerror="stop">
                 <classpath>
                     <fileset dir="${basedir}/src/lib">
-                          <include name="*.jar"/>
+                          <include name="mysql-connector-java-5.0.8-bin.jar"/>
                     </fileset>
                 </classpath>
-                DROP DATABASE ${database.name};
+                DROP DATABASE IF EXISTS ${database.name};
                 CREATE DATABASE ${database.name};
             </sql>
     </target>
@@ -708,23 +714,21 @@
         </cobertura-report>
     </target>
 
-<!--
-    DAO
-    <target name="runJunitTestCases" depends="runDAOTestCases">
+
+    <target name="runDAOReport" depends="runDAOTestCases">
         <echo>Executing Junit test cases : </echo>
-       <junitreport todir="${target.dir}/reports/daoTestReports">
-           <fileset dir="${target.dir}/reports/daoTestReports">
+       <junitreport todir="${target.dir}/reports/TestReports">
+           <fileset dir="${target.dir}/reports/TestReports">
                <include name="TEST-*.xml" />
            </fileset>
-           <report todir="${target.dir}/reports/daoTestReports/HtmlReports" />
+           <report todir="${target.dir}/reports/TestReports/HtmlReports" />
        </junitreport>
    </target>
--->
 
     <target name="runDAOTestCases" depends="instrument, compileTest">
         <echo>Executing DAO test cases : </echo>
-        <mkdir dir="${target.dir}/reports/daoTestReports"/>
-        <mkdir dir="${target.dir}/reports/daoTestReports/HtmlReports"/>
+        <mkdir dir="${target.dir}/reports/TestReports"/>
+        <mkdir dir="${target.dir}/reports/TestReports/HtmlReports"/>
 
         <junit printsummary="yes" fork="yes">
             <formatter type="xml" />
@@ -734,7 +738,7 @@
                 original (uninstrumented) classes.  This is important.
             -->
 
-            <classpath location="${test.instrumented.dir}" />
+            <classpath location="${instrumented.classes.dir}" />
             <classpath location="${target.dir}/classes}" />
 
             <classpath>
@@ -752,7 +756,7 @@
 
             <classpath refid="cobertura.classpath" />
 
-            <batchtest fork="yes" todir="${target.dir}/reports/daoTestReports">
+            <batchtest fork="yes" todir="${target.dir}/reports/TestReports">
                 <fileset dir="${project.test}/java">
                     <include name="**/DAOTestSuite.java" />
                 </fileset>
