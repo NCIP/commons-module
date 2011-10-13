@@ -32,7 +32,6 @@
 
     <property name="target.dir" value="${basedir}/target" />
     <property name="lib.dir" value="${basedir}/lib" />
-    <property name="dist.dir" value="${basedir}/dist" />
     <property name="extra_lib.dir" value="${basedir}/extra_lib" />
     <property name="generateforce" value="true" />
     <property name="junit.dir" value="${basedir}/target/junit" />
@@ -75,7 +74,6 @@
 
 	<target name="clean">
         <delete dir="${target.dir}" failonerror="false" />
-        <delete dir="${dist.dir}" failonerror="false" />
         <delete dir="${junit.dir}" failonerror="false"/>
         <delete dir="${junit.classes.dir}" failonerror="false"/>
 	</target>
@@ -90,7 +88,6 @@
     <target name="init">
         <delete dir="${target.dir}" failonerror="false"/>
         <mkdir dir="${target.dir}/classes" />
-        <mkdir dir="${dist.dir}" />
         <delete dir="${junit.dir}" failonerror="false"/>
         <mkdir dir="${junit.dir}" />
         <delete dir="${junit.classes.dir}" failonerror="false"/>
@@ -132,7 +129,7 @@
 
 	<target name="build.jar" depends="compile">
 		<tstamp />
-		<jar jarfile="${local-ivy-repo.dir}/washu-commons-${wc.jar.version}.jar" basedir="${target.dir}/classes">
+		<jar jarfile="${local-ivy-repo.dir}/washu-commons.jar" basedir="${target.dir}/classes">
 			<manifest>
 				<section name="${wc.jar.details}">
 					<attribute name="Version" value="${wc.jar.version}"/>
@@ -143,7 +140,7 @@
 			</manifest>
 		</jar>
         <antcall target="AppletJAR" />
-        <copy file="${local-ivy-repo.dir}/washu-commons-${wc.jar.version}.jar" todir="${dist.dir}" />
+        <copy file="${local-ivy-repo.dir}/washu-commons.jar" todir="${dist.dir}" />
         <copy file="${dist.dir}/TreeApplet.jar" todir="${local-ivy-repo.dir}" />
 	</target>
 
@@ -152,7 +149,7 @@
         <copy todir="${target.dir}/sources">
 			<fileset dir="${src.dir}" includes="**/*" />
 		</copy>
-        <jar jarfile="${local-ivy-repo.dir}/washu-commons-${wc.jar.version}.src.jar" basedir="${target.dir}/sources">
+        <jar jarfile="${local-ivy-repo.dir}/washu-commons-src.jar" basedir="${target.dir}/sources">
             <manifest>
                 <section name="${wc.jar.details}">
                     <attribute name="Version" value="${wc.jar.version}"/>
@@ -162,7 +159,7 @@
                   </section>
             </manifest>
         </jar>
-        <copy file="${local-ivy-repo.dir}/washu-commons-${wc.jar.version}.src.jar" todir="${dist.dir}" />
+        <copy file="${local-ivy-repo.dir}/washu-commons-src.jar" todir="${dist.dir}" />
 	</target>
 
     <target name="testSendMailWithAuthentication" depends="compile" description="Sends the Mail after authentication of the sender">
