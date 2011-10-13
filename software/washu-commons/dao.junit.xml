@@ -5,13 +5,13 @@ ALL TASK WERE MIGRATED TO BUILD.XML
 -->
 <project name="DAOJUnits" default="compileDaoTestCases">
 
-    <property name="base.dir" value="../" />
+    <property name="base.dir" value="." />
 
 	<property name="project.src" value="${base.dir}/src/main/java"/>
 	<property name="project.test" value="${base.dir}/src/test/"/>
     <property name="target.dir" value="${base.dir}/target" />
 	<property name="project.classes" value="${target.dir}/classes"/>
-	<property name="junit.dir" value="./"/>
+	<property name="junit.dir" value="build/"/>
 
 	<property name="lib.dir" value="${base.dir}/src/lib"/>
 	<property name="dist.dir" value="${base.dir}/dist"/>
