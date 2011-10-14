@@ -7,7 +7,9 @@
 
     <taskdef resource="net/sf/antcontrib/antcontrib.properties">
         <classpath>
-            <pathelement location="${basedir}/src/lib/ant-contrib.jar" />
+            <fileset dir="${basedir}/lib">
+                <include name="ant-contrib*.jar" />
+            </fileset>
         </classpath>
     </taskdef>
 
@@ -18,7 +20,7 @@
 
 	<property name="src.dir" value="${basedir}/src/main/java" />
 	<property name="dist.dir" value="${basedir}/dist" />
-	<property name="lib.dir" value="${basedir}/src/lib" />
+	<property name="lib.dir" value="${basedir}/lib" />
 	<property name="local-ivy-repo.dir" value="${basedir}/../local-ivy-repo"/>
 
     <!--define require dir and Properties -->
@@ -31,7 +33,6 @@
     <property file="${project.test}/resources/junitConf.properties"/>
 
     <property name="target.dir" value="${basedir}/target" />
-    <property name="lib.dir" value="${basedir}/lib" />
     <property name="extra_lib.dir" value="${basedir}/extra_lib" />
     <property name="generateforce" value="true" />
     <property name="junit.dir" value="${basedir}/target/junit" />
@@ -280,7 +281,7 @@
 	<target name="copyJarsToJUnitLib">
 		<mkdir dir="${junit.dir}/lib" />
 		<copy todir="${junit.dir}/lib">
-			<fileset dir="${basedir}/src/lib">
+			<fileset dir="${basedir}/lib">
 				<include name="**/*.jar" />
 			</fileset>
 		</copy>
@@ -374,7 +375,7 @@
 		<mkdir dir="${instrumented.classes.dir}" />
 		<cobertura-instrument todir="${instrumented.classes.dir}" >
             <classpath>
-                <fileset dir="${basedir}/src/lib">
+                <fileset dir="${basedir}/lib">
                     <include name="**/*.jar"/>
                 </fileset>
             </classpath>
@@ -600,7 +601,7 @@
                        onerror="continue"
                     rdbms="oracle">
                     <classpath>
-                        <fileset dir="${basedir}/src/lib">
+                        <fileset dir="${basedir}/lib">
                             <include name="*.jar"/>
                         </fileset>
                     </classpath>
@@ -622,7 +623,7 @@
                     <transaction src="${basedir}/db/dbcreation_oracle.sql" />
                     <transaction>commit;</transaction>
                     <classpath>
-                        <fileset dir="${basedir}/src/lib">
+                        <fileset dir="${basedir}/lib">
                             <include name="*.jar" />
                         </fileset>
                     </classpath>
@@ -649,7 +650,7 @@
                 password="${database.password}"
                 onerror="stop">
                 <classpath>
-                    <fileset dir="${basedir}/src/lib">
+                    <fileset dir="${basedir}/lib">
                           <include name="mysql-connector-java-5.0.8-bin.jar"/>
                     </fileset>
                 </classpath>
@@ -664,7 +665,7 @@
                 <transaction src="${basedir}/db/dbcreation_mysql.sql" />
                 <transaction>commit;</transaction>
                 <classpath>
-                    <fileset dir="${basedir}/src/lib">
+                    <fileset dir="${basedir}/lib">
                         <include name="*.jar" />
                     </fileset>
                 </classpath>
@@ -741,7 +742,7 @@
             <classpath location="${target.dir}/classes}" />
 
             <classpath>
-                <fileset dir="${basedir}/src/lib">
+                <fileset dir="${basedir}/lib">
                     <exclude name="DAO-1.1.5.jar"/>
                     <include name="*.jar"/>
                 </fileset>
