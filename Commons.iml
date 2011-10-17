@@ -14,7 +14,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/extra_lib/commons-net-1.2.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/hibernate-tools-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -23,7 +23,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/extra_lib/hibernate-tools.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/junit-3.8.1-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -32,7 +32,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/extra_lib/ant-contrib.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/cobertura-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -41,7 +41,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/extra_lib/xsdlib.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/xsdlib-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -50,7 +50,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/extra_lib/xjavadoc-1.1-j5-v4.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/lucene-core-2.0.0-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -59,7 +59,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/extra_lib/xerces.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/commons-validator-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -68,7 +68,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/extra_lib/xdoclet-xdoclet-module-1.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/mail-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -77,7 +77,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/extra_lib/xdoclet-hibernate-module-1.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/xdoclet-hibernate-module-1.2-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -86,7 +86,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/extra_lib/xdoclet-1.2.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/commons-collections-3.2-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -95,7 +95,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/extra_lib/servlet-api.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/jakarta-oro-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -104,7 +104,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/extra_lib/hibernate3.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/dom4j-1.6-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -113,7 +113,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/cobertura/log4j.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/jta-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -122,7 +122,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/cobertura/jakarta-oro-2.0.8.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/csmapi-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -131,7 +131,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/xerces.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/asm-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -140,7 +140,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/cobertura/cobertura.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/struts-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -149,7 +149,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/xml-apis.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/mmtxProject-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -158,7 +158,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/cobertura/asm-tree-2.2.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/commons-lang-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -167,7 +167,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/xsdlib.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/struts-legacy-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -176,7 +176,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/cobertura/asm-2.2.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/commons-logging-1.0.4-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -185,7 +185,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/swingx-2006_10_08.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/servlet-api-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -194,7 +194,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/struts.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/ojdbc14-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -203,7 +203,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/struts-legacy.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/catissuecore-client-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -212,7 +212,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/servlet.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/jdom-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -221,7 +221,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/relaxngDatatype.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/commons-fileupload-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -230,7 +230,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/ojdbc14.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/log4j-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -239,7 +239,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/namespace.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/junit-4.1-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -248,7 +248,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/mysql-connector-java-5.0.8-bin.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/jax-qname-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -257,7 +257,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/mmtxProject.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/jaas-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -266,7 +266,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/mail.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/activation-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -275,7 +275,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/lucene-core-2.0.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/j2ee-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -284,7 +284,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/log4j.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/namespace-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -293,7 +293,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/log4j-1.2.9.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/ehcache-1.2.3-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -302,7 +302,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/junit-4.5.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/commons-logging-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -311,7 +311,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/junit-4.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/c3p0-0.8.5.2-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -320,7 +320,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/jta.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/cglib-2.1-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -329,7 +329,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/junit-3.8.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/asm-tree-2.2.1-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -338,7 +338,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/jax-qname.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/relaxngDatatype-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -347,7 +347,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/jdom.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/log4j-1.2.14.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -356,7 +356,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/jakarta-oro.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/ant-contrib-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -365,7 +365,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/jaws.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/cglib-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -374,7 +374,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/j2ee.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/caCOREClient-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -383,7 +383,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/jaas.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/asm-2.2.1-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -392,7 +392,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/ehcache-1.2.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/mysql-connector-java-5.0.8-bin-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -401,7 +401,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/hibernate3.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/log4j-1.2.9-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -410,7 +410,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/dom4j-1.6.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/xjavadoc-1.1-j5-v4-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -419,7 +419,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/commons-validator.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/xdoclet-1.2.3-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -428,7 +428,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/csmapi.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/commons-beanutils-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -437,7 +437,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/commons-logging-1.0.4.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/servlet-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -446,7 +446,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/commons-logging.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/xerces-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -455,7 +455,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/ant-contrib.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/xdoclet-xdoclet-module-1.2-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -464,7 +464,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/activation.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/commons-collections-2.1.1-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -473,7 +473,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/asm.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/hibernate3-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -482,7 +482,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/c3p0-0.8.5.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/swingx-2006_10_08-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -491,7 +491,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/antlr-2.7.5H3.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/jakarta-oro-2.0.8-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -500,7 +500,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/asm-attrs.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/junit-4.5-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -509,7 +509,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/castor-1.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/castor-1.3-core-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -518,7 +518,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/catissuecore-client.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/jaws-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -527,7 +527,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/caCOREClient.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/asm-attrs-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -536,7 +536,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/castor-1.3-core.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/antlr-2.7.5H3-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -545,7 +545,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/commons-beanutils.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/commons-net-1.2.2-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -554,7 +554,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/commons-collections-2.1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/commons-digester-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -563,7 +563,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/cglib-2.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/xml-apis-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -572,43 +572,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/cglib.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/commons-fileupload.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/commons-lang.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/commons-collections-3.2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/software/washu-commons/src/lib/commons-digester.jar!/" />
+          <root url="jar://$MODULE_DIR$/software/washu-commons/lib/castor-1.3-1.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
