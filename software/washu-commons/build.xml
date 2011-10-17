@@ -13,6 +13,7 @@
                 </fileset>
             </classpath>
         </taskdef>
+        <taskdef classpathref="junit.classpath" resource="tasks.properties" />
     </target>
 
     <property file="${basedir}/conf/washu-commons.properties"/>
@@ -204,12 +205,13 @@
 	</path>
 
 	<path id="junit.classpath">
-		<pathelement location="${cobertura.dir}/cobertura.jar" />
-		<pathelement location="${cobertura.dir}/jakarta-oro-2.0.8.jar" />
-		<pathelement location="${cobertura.dir}/asm-2.2.1.jar" />
-		<pathelement location="${lib.dir}/log4j.jar" />
+        <fileset dir="${basedir}/lib">
+            <include name="cobertura*.jar" />
+            <include name="jakarta-oro*.jar" />
+            <include name="asm-2.2*.jar" />
+            <include name="log4j*.jar" />
+        </fileset>
 	</path>
-
 
 	<target name="compileTest">
         <javac destdir="${junit.classes.dir}" includes="**/*.*" debug="on" includeAntRuntime="false" target="1.5">
@@ -299,7 +301,6 @@
 		</junitreport>
 	</target>
 
-	<taskdef classpathref="junit.classpath" resource="tasks.properties" />
 
 	<target name="runJUnitTests" depends="build_jar, compileTest, copyJarsToJUnitLib">
 		<antcall target="initJUnit"/>
