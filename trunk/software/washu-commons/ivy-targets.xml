@@ -11,8 +11,8 @@
     <property name="organization" value="gov.nih.nci.catissue"/>
 
     <!-- CHANGE THE NEXT PROPERTIES TO MATCH YOUR PROJECT -->
-    <property name="pub.revision" value="2.0"/>
-    <property name="revision" value="2.0"/>
+    <property name="pub.revision" value="${cp.jar.version}"/>
+    <property name="revision" value="${cp.jar.version}"/>
     <property name="module" value="commons"/>
 
 
