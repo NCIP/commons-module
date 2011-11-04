@@ -13,7 +13,7 @@
     <!-- CHANGE THE NEXT PROPERTIES TO MATCH YOUR PROJECT -->
     <property name="pub.revision" value="2.0"/>
     <property name="revision" value="2.0"/>
-    <property name="module" value="AdvancedQuery"/>
+    <property name="module" value="commons"/>
 
 
     <!-- IVY -->
