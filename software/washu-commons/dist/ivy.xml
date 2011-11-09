@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ivy-module version="2.0">
-	<info organisation="gov.nih.nci.catissue" module="commons" revision="${cp.jar.version}" status="release" />
-	<publications>
-		<artifact name="washu-commons" ext="jar" type="jar" />
-		<artifact name="washu-commons-src" ext="jar" type="jar" />
-		<artifact name="TreeApplet" ext="jar" type="jar" />
-	</publications>
-</ivy-module>
