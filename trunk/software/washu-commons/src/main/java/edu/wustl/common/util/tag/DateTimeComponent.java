@@ -144,8 +144,25 @@ public class DateTimeComponent extends TagSupport
 	 * Javascript function to be called on click of calendar image.
 	 */
 	private transient String onClickImage;
+	/**
+	 * Javascript function to be called on onChange of calendar value.
+	 */
+	private transient String onChange;
+	
 
 	// ------------ SETTER Methods ----------------------------------
+	/**
+	 * @param onChange String - The onChange to set.
+	 */
+	public String getOnChange() {
+		return onChange;
+	}
+	/**
+	 * @param onChange String - The onChange to get.
+	 */
+	public void setOnChange(String onChange) {
+		this.onChange = onChange;
+	}
 
 	/**
 	 * @param datePattern String - The pattern to set.
@@ -440,7 +457,8 @@ public class DateTimeComponent extends TagSupport
 		{
 			isDisabled = " disabled=\"disabled\">";
 		}
-		Object[] inputTagArgs = {name, identifier, value, styleClass, size, isDisabled};
+		String onChangeValue=getOnChangeFunction();
+		Object[] inputTagArgs = {name, identifier, value, styleClass, size, onChangeValue,isDisabled};
 		StringBuffer output = new StringBuffer(MessageFormat.format(props
 				.getProperty("DTCinputTag"), inputTagArgs));
 		String onClickFunction = getOnClickFunction();
@@ -489,6 +507,21 @@ public class DateTimeComponent extends TagSupport
 		}
 		return onClickFunction;
 	}
+	/**
+	 * Method to handle the OnChnage Event of DateTimeComponent.
+	 */
+	
+	private String getOnChangeFunction() throws IOException
+	{
+		String onChangeFunction="";
+		
+		if(onChange != null && !onChange.equals(""))
+		{
+			onChangeFunction =" onChange=\""+onChange+"\" ";
+		}
+		return onChangeFunction;
+	}
+	
 
 	/**
 	 * Method to initialize the optional parameters.
