@@ -127,6 +127,15 @@
             </fileset>
         </copy>
 
+        <copy file="${basedir}/conf/ExceptionFormatter.properties" todir="${target.dir}/classes" verbose="true"/>
+        <copy todir="${target.dir}/classes" verbose="true">
+            <fileset dir="${basedir}/src/">
+                <include name="Tag.properties" />
+                <include name="CDEConfig.xml" />
+                <include name="DataTypeConfigurations.xml" />
+            </fileset>
+        </copy>
+
 	</target>
 
 	<target name="dist" depends="postResolve, build.jar, build.src.zip" />
