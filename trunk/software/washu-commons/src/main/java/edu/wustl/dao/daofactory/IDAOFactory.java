@@ -18,7 +18,6 @@ import edu.wustl.dao.util.HibernateMetaData;
 import java.sql.Connection;
 
 
-
 /**
  * @author kalpana_thakur
  */
@@ -159,7 +158,7 @@ public interface IDAOFactory
 	 * @return the hibernateMetaData
 	 */
 	HibernateMetaData getHibernateMetaData();
-	
+
 	/**
 	 * Gets the connectiontion.
 	 * 

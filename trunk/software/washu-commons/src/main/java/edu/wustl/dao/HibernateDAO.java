@@ -133,25 +133,4 @@ public interface HibernateDAO extends DAO
 	void auditLoginEvents(boolean loginStatus,
 			LoginDetails loginDetails)throws AuditException;
 
-	/**
-	 * Execute query.
-	 *
-	 * @param query the query
-	 * @param columnValueBeans the column value beans
-	 * @param maxResults the max results
-	 *
-	 * @return the list
-	 *
-	 * @throws DAOException the DAO exception
-	 */
-	List executeQuery(String query,List<ColumnValueBean> columnValueBeans, int maxResults)
-	throws DAOException;
-
-	/**
-	 * Merge. This method merges the object passed as parameter with the same object present in
-	 * database. If no old object is present in db then new object is inserted in database.
-	 * @param objectToBeMerged the object to be merged
-	 */
-	void merge(Object objectToBeMerged);
-
 }

@@ -38,26 +38,6 @@ public class LoginEvent implements Serializable
 	 */
 	protected boolean isLoginSuccessful;
 	/**
-	 * Login name of the user.
-	 */
-	protected String loginName;
-	/**
-     * Returns user's login Name.
-     * @return user's login Name
-     * @hibernate.property name="loginName" type="String"
-     * column="LOGIN_NAME"
-     */
-	public String getLoginName() {
-		return loginName;
-	}
-	/**
-	 *
-	 * @param loginName sets the loginName.
-	 */
-	public void setLoginName(final String loginName) {
-		this.loginName = loginName;
-	}
-	/**
      * Returns user's login Status.
      * @return user's login Status
      * @hibernate.property name="isLoginSuccessful" type="boolean"

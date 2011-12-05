@@ -1,8 +1,6 @@
 
 package edu.wustl.common.domain;
 
-import java.util.Date;
-
 /**
  * This class acts as a POJO for all the Login Attempt related information.
  * An instance of this class is passed to the LoginAuditManager's audit() method,
@@ -28,24 +26,6 @@ public class LoginDetails
 	 */
 	private boolean isLoginSuccessful;
 	/**
-	 * Login name of the user.
-	 */
-	protected String loginName;
-	/**
-	 * Returns the userLoginId.
-	 * @return user Login Name.
-	 */
-	public String getLoginName() {
-		return loginName;
-	}
-	/**
-	 * Sets the loginName.
-	 * @param loginName to set value of loginName.
-	 */
-	public void setLoginName(final String loginName) {
-		this.loginName = loginName;
-	}
-	/**
 	 * Constructor accepting the details required to create the LoginDetails object.
 	 * @param userLoginId User Login Id.
 	 * @param sourceId Source Id.
@@ -70,20 +50,6 @@ public class LoginDetails
 	{
 		this(userLoginId, sourceId, ipAddress);
 		this.isLoginSuccessful = isLoginSuccessful;
-	}
-	/**
-	 * Constructor accepting the details required to create the LoginDetails object.
-	 * along with login status.
-	 * @param userLoginId User Login Id.
-	 * @param sourceId Source Id.
-	 * @param ipAddress IP Address.
-	 * @param isLoginSuccessful boolean value.
-	 */
-	public LoginDetails(Long userLoginId, Long sourceId, String ipAddress,
-			String loginName )
-	{
-		this(userLoginId, sourceId, ipAddress);
-		this.loginName = loginName;
 	}
 	/**
 	 * Returns the userLoginId.
@@ -148,46 +114,5 @@ public class LoginDetails
 	public void setLoginSuccessful(boolean isLoginSuccessful)
 	{
 		this.isLoginSuccessful = isLoginSuccessful;
-	}
-
-	/**
-     * Date and time of the event.
-     */
-	protected Date timestamp;
-
-	/**
-	 * Gets the timestamp.
-	 *
-	 * @return the timestamp
-	 */
-	public Date getTimestamp()
-	{
-		return timestamp;
-	}
-
-	/**
-	 * Sets the timestamp.
-	 *
-	 * @param timestamp the new timestamp
-	 */
-	public void setTimestamp(Date timestamp)
-	{
-		this.timestamp = timestamp;
-	}
-
-		/**
-	 * Constructor accepting the details required to create the LoginDetails object.
-	 * along with login status.
-	 * @param userLoginId User Login Id.
-	 * @param sourceId Source Id.
-	 * @param ipAddress IP Address.
-	 * @param isLoginSuccessful boolean value.
-	 */
-	public LoginDetails(Long userLoginId, Long sourceId, String ipAddress,
-			boolean isLoginSuccessful, String loginName, Date timeStamp)
-	{
-		this(userLoginId, sourceId, ipAddress, isLoginSuccessful);
-		this.loginName = loginName;
-		this.timestamp = timeStamp;
 	}
 }

@@ -453,7 +453,7 @@ public class DAOFactory implements IDAOFactory
 	{
 		return databaseProperties.getDataBaseType();
 	}
-	/**
+/**
 	 * Client's responsible for closing the connection...
 	 * 
 	 * @return a new connection
