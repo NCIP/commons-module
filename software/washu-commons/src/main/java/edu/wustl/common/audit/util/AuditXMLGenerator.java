@@ -1,4 +1,3 @@
-
 package edu.wustl.common.audit.util;
 
 import java.io.File;
@@ -21,39 +20,11 @@ import edu.wustl.dao.exception.AuditException;
  */
 public class AuditXMLGenerator
 {
-
-	/** The exclude association. */
 	public static boolean excludeAssociation;
-
-	/** The audit xml tag generator. */
-	private AuditXMLTagGenerator auditXMLTagGenerator;
-
-	/**
-	 * Instantiates a new audit xml generator.
-	 */
-	public AuditXMLGenerator()
-	{
-		setAuditXMLTagGenerator(new AuditXMLTagGenerator());
-	}
-
-	/**
-	 * Instantiates a new audit xml generator.
-	 *
-	 * @param xmlTagGenerator the xml tag generator
-	 */
-	public AuditXMLGenerator(AuditXMLTagGenerator xmlTagGenerator)
-	{
-		setAuditXMLTagGenerator(xmlTagGenerator);
-	}
-
-	/**
-	 * @param args
-	 * @throws AuditException
-	 */
 	public static void main(String[] args) throws AuditException
 	{
 		int classCounter = generateAuditXML(args);
-		System.out.println("Total number of classes:" + classCounter);
+		System.out.println("Totatl number of clsses:" + classCounter);
 	}
 
 	/**
@@ -66,28 +37,15 @@ public class AuditXMLGenerator
 	 */
 	public static int generateAuditXML(String[] args) throws AuditException
 	{
-		AuditXMLGenerator auditXMLGenerator = new AuditXMLGenerator();
-		return auditXMLGenerator.generateAuditMetadataXML(args);
-	}
 
-	/**
-	 * Generate audit metadata xml.
-	 *
-	 * @param args the args
-	 *
-	 * @return the int
-	 *
-	 * @throws AuditException the audit exception
-	 */
-	public int generateAuditMetadataXML(String[] args) throws AuditException
-	{
 		int classCounter = 0;
 		try
 		{
 			PrintWriter auditableXmlWriter = new PrintWriter(args[1]);
 			auditableXmlWriter.println("<?xml version='1.0' encoding='utf-8'?>");
 			auditableXmlWriter.println("<AuditableMetaData>");
-			if (args.length > 2)
+			AuditXMLTagGenerator auditXMLGenerator = new AuditXMLTagGenerator();
+			if(args.length >2)
 			{
 				excludeAssociation = Boolean.valueOf(args[2]);
 			}
@@ -97,7 +55,7 @@ public class AuditXMLGenerator
 				if (!class1.isInterface() && !class1.isEnum()
 						&& !Modifier.isAbstract(class1.getModifiers()))
 				{
-					auditableXmlWriter.println(getAuditXMLTagGenerator()
+					auditableXmlWriter.println(auditXMLGenerator
 							.getAuditableMetatdataXMLString(class1.getName()));
 					classCounter++;
 				}
@@ -107,98 +65,70 @@ public class AuditXMLGenerator
 		}
 		catch (FileNotFoundException e)
 		{
-			throw new AuditException(ErrorKey.getErrorKey("audit.xml.generation.error"), e, "");
+			throw new AuditException(ErrorKey.getErrorKey("audit.xml.generation.error"),e,"");
 		}
+
 
 		return classCounter;
 	}
-
 	/**
-	 * Scans all classes accessible from the context class loader which belong to the given package and subpackages.
-	 * @param packageName The base package
-	 * @return The classes
+     * Scans all classes accessible from the context class loader which belong to the given package and subpackages.
+     * @param packageName The base package
+     * @return The classes
 	 * @throws AuditException
-	 * @throws ClassNotFoundException
-	 * @throws IOException
-	 */
-	protected Class[] getClasses(String packageName) throws AuditException
-	{
-		ArrayList<Class> classes = new ArrayList<Class>();
-		try
-		{
-			ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-			assert classLoader != null;
-			String path = packageName.replace('.', '/');
-			Enumeration<URL> resources = classLoader.getResources(path);
-			List<File> dirs = new ArrayList<File>();
-			while (resources.hasMoreElements())
-			{
-				URL resource = resources.nextElement();
-				dirs.add(new File(resource.getFile()));
-			}
+     * @throws ClassNotFoundException
+     * @throws IOException
+     */
+    private static Class[] getClasses(String packageName) throws AuditException{
+    	ArrayList<Class> classes = new ArrayList<Class>();
+    	try{
+		ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        assert classLoader != null;
+		String path = packageName.replace('.', '/');
+		Enumeration<URL> resources = classLoader.getResources(path);
+        List<File> dirs = new ArrayList<File>();
+        while (resources.hasMoreElements()) {
+            URL resource = resources.nextElement();
+            dirs.add(new File(resource.getFile()));
+        }
 
-			for (File directory : dirs)
-			{
-				classes.addAll(findClasses(directory, packageName));
-			}
-		}
+        for (File directory : dirs) {
+            classes.addAll(findClasses(directory, packageName));
+        }
+    	}
 		catch (ClassNotFoundException e)
 		{
-			throw new AuditException(ErrorKey.getErrorKey("audit.xml.generation.error"), e, "");
+			throw new AuditException(ErrorKey.getErrorKey("audit.xml.generation.error"),e,"");
 		}
 		catch (IOException e)
 		{
-			throw new AuditException(ErrorKey.getErrorKey("audit.xml.generation.error"), e, "");
+			throw new AuditException(ErrorKey.getErrorKey("audit.xml.generation.error"),e,"");
 		}
-		return classes.toArray(new Class[classes.size()]);
-	}
+        return classes.toArray(new Class[classes.size()]);
+    }
 
-	/**
-	 * Recursive method used to find all classes in a given directory and subdirs.
-	 * @param directory   The base directory
-	 * @param packageName The package name for classes found inside the base directory
-	 * @return The classes
-	 * @throws ClassNotFoundException
-	 */
-	protected List<Class> findClasses(File directory, String packageName)
-			throws ClassNotFoundException
-	{
-		List<Class> classes = new ArrayList<Class>();
-		if (!directory.exists())
-		{
-			return classes;
-		}
-		File[] files = directory.listFiles();
-		for (File file : files)
-		{
-			if (file.isDirectory())
-			{
-				assert !file.getName().contains(".");
-				classes.addAll(findClasses(file, packageName + "." + file.getName()));
-			}
-			else if (file.getName().endsWith(".class"))
-			{
-				classes.add(Class.forName(packageName + '.'
-						+ file.getName().substring(0, file.getName().length() - 6)));
-			}
-		}
-		return classes;
-	}
-
-	/**
-	 * @return the auditXMLTagGenerator
-	 */
-	public AuditXMLTagGenerator getAuditXMLTagGenerator()
-	{
-		return auditXMLTagGenerator;
-	}
-
-	/**
-	 * @param auditXMLTagGenerator the auditXMLTagGenerator to set
-	 */
-	public void setAuditXMLTagGenerator(AuditXMLTagGenerator auditXMLTagGenerator)
-	{
-		this.auditXMLTagGenerator = auditXMLTagGenerator;
-	}
+    /**
+     * Recursive method used to find all classes in a given directory and subdirs.
+     * @param directory   The base directory
+     * @param packageName The package name for classes found inside the base directory
+     * @return The classes
+     * @throws ClassNotFoundException
+     */
+    private static List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException {
+        List<Class> classes = new ArrayList<Class>();
+        if (!directory.exists()) {
+            return classes;
+        }
+        File[] files = directory.listFiles();
+        for (File file : files) {
+            if (file.isDirectory()) {
+                assert !file.getName().contains(".");
+                classes.addAll(findClasses(file, packageName + "." + file.getName()));
+            } else if (file.getName().endsWith(".class")) {
+                classes.add(Class.forName(packageName + '.' + file.getName().substring(0, file.getName().length() - 6)));
+            }
+        }
+        return classes;
+    }
 
 }

@@ -121,13 +121,6 @@ public final class DAOConstants extends CommonConstants
 	public static final String DATE_PATTERN_MM_DD_YYYY = "MM-dd-yyyy";
 
 	/**
-	 * Date pattern.
-	 */
-	public static final String TIMESTAMP_PATTERN = "MM-dd-yyyy HH:mm:ss";
-
-	public static final String EMPTY_STRING = "";
-
-	/**
 	 * Opening bracket.
 	 *//*
 	public static final String OPENING_BRACKET_OPERATOR = "(";
@@ -150,8 +143,5 @@ public final class DAOConstants extends CommonConstants
 	    */
 	 public static final String[] INVALID_DATA = {"execute", "exec","sp_executesql",
 		 "delete","drop",";","xp_","/*","*/"};
-
-	 public static final String[] EXTRA_CHECK_DATA = {"execute", "exec","sp_executesql",
-		 "delete","drop"};
 
 }

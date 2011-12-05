@@ -10,7 +10,6 @@ package edu.wustl.dao;
 
 import java.util.List;
 
-
 import edu.wustl.common.beans.SessionDataBean;
 import edu.wustl.dao.connectionmanager.IConnectionManager;
 import edu.wustl.dao.exception.DAOException;

@@ -16,7 +16,6 @@
         <taskdef classpathref="junit.classpath" resource="tasks.properties" />
     </target>
 
-    <property file="${basedir}/conf/washu-commons.properties"/>
     <property file="${basedir}/conf/commonpackage.properties"/>
     <property file="${basedir}/conf/mail.properties"></property>
     <property file="${basedir}/src/main/resources/DAO.properties"/>
@@ -145,8 +144,8 @@
 		<jar jarfile="${local-ivy-repo.dir}/washu-commons.jar" basedir="${target.dir}/classes">
 			<manifest>
 				<section name="${wc.jar.details}">
-					<attribute name="Version" value="${wc.jar.version}"/>
-					<attribute name="Built-By" value="${wc.jar.creator}" />
+					<attribute name="Version" value="${cp.jar.version}"/>
+					<attribute name="Built-By" value="${cp.jar.creator}" />
 					<attribute name="Build-on" value="${TODAY} ${TSTAMP}" />
 					<attribute name="SVN-URL" value="${dist.revision}" />
 			  	</section>
@@ -259,6 +258,7 @@
 		</zip>
 	</target>
 
+<!--
 	<target name="build_jar" depends="build_code_zip, compile">
 		<tstamp />
 		<jar taskname="build_jar" jarfile="${dist.dir}/commonpackage-${cp.jar.version}.jar">
@@ -282,6 +282,7 @@
 			</manifest>
 		</jar>
 	</target>
+-->
 
 	<target name="initJUnit">
 		<delete failonerror="false">
@@ -311,6 +312,7 @@
 	</target>
 
 
+<!--
 	<target name="runJUnitTests" depends="build_jar, compileTest, copyJarsToJUnitLib">
 		<antcall target="initJUnit"/>
 		<junit printsummary="yes" haltonerror="no" haltonfailure="no" fork="yes">
@@ -339,6 +341,7 @@
 		</junit>
 		<antcall target="createJunitReport" />
 	</target>
+-->
 
 	<target name="junitForCobertura" depends="compileTest,copyJarsToJUnitLib">
 			<antcall target="initJUnit"/>
@@ -647,11 +650,13 @@
         <antcall target="deploy:db-oracle"/>
     </target>
 
+<!--
     <target name="CodeCoverage">
         <antcall target="instrument"/>
         <antcall target="runJUnitTests"/>
         <antcall target="coverage-report"/>
     </target>
+-->
 
     <target name="create:db-mysql">
             <echo message="Creating Mysql Database..."/>

@@ -14,7 +14,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringReader;
 import java.sql.Blob;
 import java.sql.Clob;
 import java.sql.Connection;
@@ -816,13 +815,13 @@ public abstract class AbstractJDBCDAOImpl extends AbstractDAOImpl implements JDB
 			{
 				ColumnValueBean colValueBean = colValItr.next();
 
-				if(colValueBean.getColumnValue() instanceof Timestamp)
-				{
-					stmt.setTimestamp(index,(Timestamp)colValueBean.getColumnValue());
-				}
-				else if((colValueBean.getColumnValue() instanceof Date))
+				if((colValueBean.getColumnValue() instanceof Date))
 				{
 					stmt.setDate(index,setDateToPrepStmt(colValueBean));
+				}
+				else if(colValueBean.getColumnValue() instanceof Timestamp)
+				{
+					stmt.setTimestamp(index,(Timestamp)colValueBean.getColumnValue());
 				}
 				else if (colValueBean.getColumnValue() instanceof File)
 				{
@@ -838,17 +837,6 @@ public abstract class AbstractJDBCDAOImpl extends AbstractDAOImpl implements JDB
 				else if (colValueBean.getColumnValue() instanceof Clob)
 				{
 					 stmt.setClob(index,(Clob)colValueBean.getColumnValue());
-				}
-				else if (colValueBean.getColumnValue() instanceof StringReader)
-				{
-					StringReader reader = (StringReader) colValueBean.getColumnValue();
-					int length = 0;
-					do
-					{
-						length++;
-					}while(reader.read()!= -1);
-					reader.reset();
-					stmt.setCharacterStream(index, reader, length);
 				}
 				else if(colValueBean.getColumnValue() instanceof InputStream)
 				{
