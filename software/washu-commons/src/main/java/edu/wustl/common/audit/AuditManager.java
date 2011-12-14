@@ -317,7 +317,8 @@ public class AuditManager // NOPMD
 			//Class not exist.
 			if(!isClassFound)
 			{
-				throw new AuditException(ErrorKey.getErrorKey (""),null, obj.getClass().getName());
+				throw new AuditException(ErrorKey.getErrorKey ("class.missing"),null, obj.getClass().getName());
+
 			}
 		}
 		return auditableClassId;

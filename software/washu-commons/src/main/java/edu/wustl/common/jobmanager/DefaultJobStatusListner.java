@@ -41,7 +41,7 @@ public class DefaultJobStatusListner implements JobStatusListener
 		}
 		catch (AuditException ex)
 		{
-			LOGGER.error(ex.getMessage(), ex);
+			LOGGER.info(ex.getMessage());
 		}
 		DAO dao = null;
 		try

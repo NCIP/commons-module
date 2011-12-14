@@ -151,7 +151,7 @@ public class HibernateDAOImpl extends AbstractDAOImpl implements HibernateDAO
 		catch (AuditException exp)
 		{
 
-			logger.info(exp.getMessage(),exp);
+			logger.info(exp.getMessage());
 			//throw DAOUtility.getInstance().getDAOException(exp, exp.getErrorKeyName(),
 				//	exp.getMsgValues());
 		}
@@ -195,7 +195,7 @@ public class HibernateDAOImpl extends AbstractDAOImpl implements HibernateDAO
 		}
 		catch (AuditException exp)
 		{
-			logger.info(exp.getMessage(),exp);
+			logger.info(exp.getMessage());
 			return null;
 			/*throw DAOUtility.getInstance().getDAOException(exp, exp.getErrorKeyName(),
 					exp.getMsgValues());*/
@@ -247,7 +247,7 @@ public class HibernateDAOImpl extends AbstractDAOImpl implements HibernateDAO
 		}
 		catch (AuditException exp)
 		{
-			logger.info(exp.getMessage(),exp);
+			logger.info(exp.getMessage());
 			//throw DAOUtility.getInstance().getDAOException(exp, exp.getErrorKeyName(),
 				//	exp.getMsgValues());
 		}
