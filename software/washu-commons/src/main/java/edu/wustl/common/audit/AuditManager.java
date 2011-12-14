@@ -317,12 +317,7 @@ public class AuditManager // NOPMD
 			//Class not exist.
 			if(!isClassFound)
 			{
-				LOGGER.error("Class "+ obj.getClass().getName()+
-				" missing in auditablemetadata.xml.");
-
-				throw new AuditException(ErrorKey.getErrorKey
-						("class.missing"),null, obj.getClass().getName());
-
+				throw new AuditException(ErrorKey.getErrorKey (""),null, obj.getClass().getName());
 			}
 		}
 		return auditableClassId;
