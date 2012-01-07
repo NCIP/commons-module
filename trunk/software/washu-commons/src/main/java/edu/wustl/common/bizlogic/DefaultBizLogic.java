@@ -251,7 +251,7 @@ public class DefaultBizLogic extends AbstractBizLogic
 
 	protected boolean validate(Object obj, DAO dao, String operation,
 			Object uiObject) throws BizLogicException {
-		return true;
+		return validate(obj, dao, operation);
 	}
 
 	/**
