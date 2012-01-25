@@ -13,8 +13,13 @@ import org.apache.struts.action.ActionMapping;
 
 import edu.wustl.common.beans.SessionDataBean;
 import edu.wustl.common.exception.UserNotAuthenticatedException;
+import edu.wustl.common.sso.SSOAuthentication;
+import edu.wustl.common.sso.SSOAuthenticationFactory;
+import edu.wustl.common.sso.SSOInformationObject;
+import edu.wustl.common.util.XMLPropertyHandler;
 import edu.wustl.common.util.global.CommonServiceLocator;
 import edu.wustl.common.util.global.Constants;
+import edu.wustl.common.util.global.Validator;
 import edu.wustl.common.util.logger.Logger;
 
 /**
@@ -59,8 +64,33 @@ public abstract class BaseAction extends XSSSupportedAction
 		Object accessObj = request.getParameter(Constants.ACCESS);
 		if (!(sessionData != null && accessObj != null) && getSessionData(request) == null)
 		{
+			
+			//If condition for caTissue Single Sign On integration feature check
+			LOGGER.info("Checking for SSO Availability ");
+			if(!Validator.isEmpty(XMLPropertyHandler.getValue("sso.url")))
+			{
+				LOGGER.info("SSO Integrated with caTissue");
+				String ssoClassName = XMLPropertyHandler.getValue("sso.classname");
+				SSOAuthentication ssoAuthentication = SSOAuthenticationFactory.getSSOAuthorizationInstance(ssoClassName);
+				SSOInformationObject informationObject = new SSOInformationObject();
+				informationObject.setRequest(request);
+				informationObject = ssoAuthentication.authenticate(informationObject);
+				mapping.findForward(informationObject.getForwardTo());
+				if(informationObject.getActionErrors() != null)
+            	{
+            		saveErrors(request, informationObject.getActionErrors());
+            	}
+            	if(informationObject.getActionMessages() != null)
+            	{
+            		saveMessages(request, informationObject.getActionMessages());
+            	}				
+			}
+			else
+			{
 				//Forward to the Login
+				LOGGER.info("User not authenticated");
 				throw new UserNotAuthenticatedException();
+			}			
 		}
 		setAttributeFromParameter(request, Constants.OPERATION);
 		setAttributeFromParameter(request, Constants.MENU_SELECTED);
