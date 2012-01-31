@@ -139,7 +139,12 @@
 
 	<target name="dist" depends="postResolve, build.jar, build.src.zip" />
 
-	<target name="build.jar" depends="compile">
+	<target name="build.jar" depends="compile,compileTest">
+		<copy todir="${target.dir}/classes/edu" verbose="true">
+            <fileset dir="${junit.classes.dir}/edu">
+			   <exclude name="**/*.hbm.xml" />
+            </fileset>
+        </copy>
 		<tstamp />
 		<jar jarfile="${local-ivy-repo.dir}/washu-commons.jar" basedir="${target.dir}/classes">
 			<manifest>
