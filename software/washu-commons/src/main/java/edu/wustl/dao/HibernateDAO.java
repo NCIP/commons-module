@@ -132,5 +132,6 @@ public interface HibernateDAO extends DAO
 	 */
 	void auditLoginEvents(boolean loginStatus,
 			LoginDetails loginDetails)throws AuditException;
-
+	
+	List executeCrieteriaQuery(String className,List<ColumnValueBean> fetchMode, List<ColumnValueBean> expressions) throws DAOException;
 }

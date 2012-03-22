@@ -11,11 +11,16 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.SortedSet;
 
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Expression;
 
 import edu.wustl.common.beans.SessionDataBean;
+import edu.wustl.common.domain.AbstractDomainObject;
 import edu.wustl.common.domain.LoginDetails;
 import edu.wustl.common.domain.MyDomainObject;
 import edu.wustl.common.exception.ErrorKey;
@@ -25,6 +30,7 @@ import edu.wustl.dao.daofactory.IDAOFactory;
 import edu.wustl.dao.exception.AuditException;
 import edu.wustl.dao.exception.DAOException;
 import edu.wustl.dao.query.generator.ColumnValueBean;
+import edu.wustl.dao.util.DAOUtility;
 import edu.wustl.dao.util.HibernateMetaData;
 import edu.wustl.dao.util.NamedQueryParam;
 import edu.wustl.dao.util.StatementData;
@@ -983,4 +989,21 @@ public class MyDAOImpl implements DAO, HibernateDAO, IDAOFactory, JDBCDAO, IConn
             e.printStackTrace();
         }
     }
+    
+    public List executeCrieteriaQuery(String className,List<ColumnValueBean> fetchMode, List<ColumnValueBean> expressions) throws DAOException
+	{
+		
+		try
+		{
+	    	
+		    return new ArrayList();
+
+		}
+		catch(HibernateException hiberExp)
+		{
+			throw DAOUtility.getInstance().getDAOException(hiberExp, "db.retrieve.data.error",
+					"HibernateDAOImpl.java "+className);
+		}
+	}
+    
 }
