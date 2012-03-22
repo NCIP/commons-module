@@ -16,9 +16,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.SimpleExpression;
 
 import edu.wustl.common.audit.AuditManager;
 import edu.wustl.common.beans.SessionDataBean;
@@ -515,7 +518,7 @@ public class HibernateDAOImpl extends AbstractDAOImpl implements HibernateDAO
 		}
 	}
 
-
+	
 	/**
 	 * Executes the HQL query. for given startIndex and max
 	 * records to retrieve
@@ -556,6 +559,32 @@ public class HibernateDAOImpl extends AbstractDAOImpl implements HibernateDAO
 		}
 	}
 
+	public List executeCrieteriaQuery(String className,List<ColumnValueBean> fetchMode, List<ColumnValueBean> expressions) throws DAOException
+	{
+		logger.debug("Execute query");
+		try
+		{
+	    	Criteria criteria  = session.createCriteria(className);
+	    	for (ColumnValueBean columnValueBean : expressions) 
+	    	{
+	    		criteria.add((SimpleExpression)columnValueBean.getColumnValue());
+			}
+	    	for (ColumnValueBean columnValueBean : fetchMode) 
+	    	{
+	    		criteria.setFetchMode(columnValueBean.getColumnName(), (FetchMode)columnValueBean.getColumnValue());
+			}
+	    	
+		    return criteria.list();
+
+		}
+		catch(HibernateException hiberExp)
+		{
+			logger.error(hiberExp.getMessage(),hiberExp);
+			throw DAOUtility.getInstance().getDAOException(hiberExp, "db.retrieve.data.error",
+					"HibernateDAOImpl.java "+className);
+		}
+	}
+	
 	/**
 	 * This method returns named query.
 	 * @param queryName : handle for named query.
