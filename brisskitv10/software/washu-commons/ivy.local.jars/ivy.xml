@@ -63,6 +63,8 @@
       <artifact name="xjavadoc-1.1-j5-v4" ext="jar" type="jar"/>
       <artifact name="xml-apis" ext="jar" type="jar"/>
       <artifact name="xsdlib" ext="jar" type="jar"/>
+	  <artifact name="jxl" ext="jar" type="jar"/>
+	  <artifact name="PDFjet" ext="jar" type="jar"/>
   </publications>
 </ivy-module>
 
