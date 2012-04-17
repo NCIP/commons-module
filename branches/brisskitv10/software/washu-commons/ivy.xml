@@ -1,0 +1,26 @@
+<ivy-module version="2.0">
+	
+	<info organisation="gov.nih.nci.catissue" module="commons" revision="${cp.jar.version}" status="integration" />
+	
+	<publications>
+		<artifact name="washu-commons" ext="jar" type="jar" />
+		<artifact name="washu-commons-src" ext="jar" type="jar" />
+		<artifact name="TreeApplet" ext="jar" type="jar" />
+		<artifact name="washu-commons" type="pom" ext="pom" />
+	</publications>
+	
+    <dependencies>
+
+<!--
+    ToDo Move dependencies to cbiit + maven
+    https://bugzilla.wustl.edu/bugzilla/show_bug.cgi?id=21223
+-->
+
+<!-- LOCAL SVN REPO -->
+		<dependency org="local" name="washu-commons" rev="1.0"/>
+
+<!-- PUBLIC REPO -->
+<!--        <dependency org="log4j" name="log4j" rev="1.2.14"/>-->
+
+    </dependencies>
+</ivy-module>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Applications>
+	<Application name = "commonpackagetest">
+		<DAOFactory name="edu.wustl.dao.daofactory.DAOFactory" default="true">
+	
+			<DefaultDAO>
+				<Class-name name = "edu.wustl.dao.MyDAOImpl"/>
+				<Config-file name = "hibernate.cfg.xml"/>
+				<DefaultConnectionManager name = "edu.wustl.dao.connectionmanager.ConnectionManager"/>
+			</DefaultDAO>
+	
+			<JDBCDAO>
+				<DBPropertyFile name ="MySQLDAOProperties.xml"/>
+			</JDBCDAO>
+			
+	
+		</DAOFactory>
+	 </Application>	
+</Applications>
