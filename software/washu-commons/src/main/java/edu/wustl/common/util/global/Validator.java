@@ -92,13 +92,15 @@ public class Validator
 		boolean result = true;
 		try
 		{
-			Pattern pattern = Pattern.compile("[0-9]{3}-[0-9]{2}-[0-9]{4}",
+			LOGGER.info("Modifying the code with NHS Number validation as per UK customization");
+			Pattern pattern = Pattern.compile("[0-9]{3}-[0-9]{3}-[0-9]{4}",
 					Pattern.CASE_INSENSITIVE);
 			Matcher mat = pattern.matcher(ssn);
 			result = mat.matches();
 		}
 		catch (Exception exp)
 		{
+			LOGGER.info("Exception***Modifying the code with NHS Number validation as per UK customization");
 			LOGGER.debug(exp.getMessage(), exp);
 			result = false;
 		}
@@ -451,7 +453,7 @@ public class Validator
 		int minYear = Integer.parseInt(CommonServiceLocator.getInstance().getMinYear());
 		int maxYear = Integer.parseInt(CommonServiceLocator.getInstance().getMaxYear());
 		String dateFormatStr=CommonServiceLocator.getInstance().getDatePattern();
-		
+
 		String[] dateFormats = dateFormatStr.split(",");
 		for(String dtFormat: dateFormats)
 		{
@@ -530,13 +532,13 @@ public class Validator
 		boolean result = true;
 		Date currentDate = Calendar.getInstance().getTime();
 		String pattern=CommonServiceLocator.getInstance().getDatePattern();
-		
+
 		String[] dateFormats = pattern.split(",");
 		for(String dtFormat: dateFormats)
 		{
 			SimpleDateFormat dateFormat = new SimpleDateFormat(dtFormat,CommonServiceLocator
 					.getInstance().getDefaultLocale());
-			result = true;			
+			result = true;
 			try
 			{
 				Date toCheck = dateFormat.parse(dateToCheck);
@@ -571,7 +573,7 @@ public class Validator
 		try
 		{
 			boolean isDate1 = isValidDatePattern(startDate);
-			boolean isDate2 = isValidDatePattern(endDate);	
+			boolean isDate2 = isValidDatePattern(endDate);
 			if(isDate1 && isDate2)
 			{
 				Date toCheck = getDateFromStr(startDate);
@@ -592,8 +594,8 @@ public class Validator
 	}
 
 	/**
-	 * 
-	 * @param dateAsStr Date as String 
+	 *
+	 * @param dateAsStr Date as String
 	 * @return Date object if Date is in format specified in properties file.
 	 * @throws Exception if date in valid format.
 	 */
@@ -602,7 +604,7 @@ public class Validator
 		Date date=null;
 		boolean result = false;
 		String pattern=CommonServiceLocator.getInstance().getDatePattern();
-		
+
 		String[] dateFormats = pattern.split(",");
 		for(String dtFormat: dateFormats)
 		{
@@ -945,7 +947,7 @@ public class Validator
 		}
 		return isXssVulnerable;
 	}
-	
+
 	/**
      * This method check for xxs vulnerable characters like <, >, (, ) etc.
      * @param String for which xss vulnerable character [ (,),< or > ] to be checked.
@@ -961,5 +963,5 @@ public class Validator
     	}
     	return isXssVulnerable;
     }
-    
+
 }
