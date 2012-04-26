@@ -154,8 +154,8 @@ public final class ScriptGenerator
 		for (int i = 0; i < dList.size(); i++)
 		{
 			NameValueBean nvb = (NameValueBean) dList.get(i);
-			returner.append(varName).append(depth).append('[').append(i).append("] = ").append(
-					nvb.getValue()).append("; \n");
+			returner.append(varName).append(depth).append('[').append(i).append("] = '").append(
+					nvb.getValue()).append("'").append("; \n");
 		}
 		returner.append(varName).append((depth - 1)).append(".put(\"").append(keyValue).append(
 				"\",").append(varName).append(depth).append("); \n");
