@@ -5,9 +5,6 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletResponse;
 
-import com.pdfjet.TextLine;
-
-import edu.wustl.common.xml2pdf.RGBColor;
 
 public class CSVWriter extends BaseWriter {
 	int rows = 0;
@@ -107,13 +104,17 @@ public class CSVWriter extends BaseWriter {
 		if(label != null && text != null)
 		for(int i = 0;i < label.length; i++){
 			if(!"".equals(label[i].trim()) && !"".equals(text[i].trim())){
-				String[] arr = new String[2];
-				arr[0] = label[i];
-				arr[1] = text[i];
-				writer.append(dataAsString(arr));
+				java.util.List<String> arr = new java.util.ArrayList<String>();
+				arr.add(label[i]);
+				String[] textArr = text[i].split(",");
+				for(int count = 0; count< textArr.length; count++){
+					arr.add(textArr[count]);
+				}
+				writer.append(dataAsString(arr.toArray(new String[arr.size()])));
 			}else if("".equals(label[i].trim()) && !"".equals(text[i].trim())){
-				String[] arr = new String[1];
-				arr[0] = text[i];
+				String[] arr = text[i].split(",");//new String[1];
+				
+				//arr[0] = text[i];
 				writer.append(dataAsString(arr));
 			}else if("".equals(text[i].trim()) && !"".equals(label[i].trim())){
 				String[] arr = new String[1];
@@ -126,7 +127,6 @@ public class CSVWriter extends BaseWriter {
 		
 	}
 
-	
 	private String dataAsString(String[] csv) {
 		if (csv.length == 0) return "";
 		
@@ -136,7 +136,7 @@ public class CSVWriter extends BaseWriter {
 				buff.append(",");
 			if (!csv[i].equals("")){
 				buff.append("\"");
-				buff.append(csv[i].replace("\"", "\"\""));
+				buff.append(csv[i].trim().replace("\"", "\"\""));
 				buff.append("\"");				
 			}
 		}	
