@@ -20,7 +20,7 @@ public class CSVWriter extends BaseWriter {
 		if(fileName==null || fileName.trim().equals("")){
 			fileName = "fileName";
 		}
-		resp.setHeader("Content-Disposition", "attachment;filename="+fileName+".csv");
+		resp.setHeader("Content-Disposition", "attachment;filename="+fileName);
 		resp.setHeader("Cache-Control", "max-age=0");
 	
 		String[] csv;
