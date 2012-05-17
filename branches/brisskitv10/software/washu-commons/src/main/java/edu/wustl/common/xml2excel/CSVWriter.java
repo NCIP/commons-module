@@ -15,7 +15,7 @@ public class CSVWriter extends BaseWriter {
 		CSVxml data = new CSVxml(xml);
 		
 		resp.setCharacterEncoding("UTF-8");
-		resp.setContentType("application/vnd.ms-excel");
+		resp.setContentType("application/download");
 		resp.setCharacterEncoding("UTF-8");
 		if(fileName==null || fileName.trim().equals("")){
 			fileName = "fileName";
