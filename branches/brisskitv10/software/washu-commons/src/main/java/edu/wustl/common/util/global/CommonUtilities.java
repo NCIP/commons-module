@@ -518,7 +518,7 @@ public class CommonUtilities
 	/**
 	 * Specifies date pattern.
 	 */
-	private static String pattern = "MM-dd-yyyy";
+	private static String pattern = "dd-MM-yyyy";
 
 	/**
 	 * This method gets month from given date.
