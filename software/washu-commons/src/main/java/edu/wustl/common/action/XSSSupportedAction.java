@@ -86,17 +86,36 @@ public  abstract class XSSSupportedAction extends Action
 		ActionForward actionForward = null;
 		LOGGER.info("Checking for XSS validations");
 		boolean isRedirected = false;
-
-        isRedirected = getIsRedirected(request);
-        final boolean isToRedirect = isToExecuteXSSSafeAction(request);
-
-        final String ajaxRequest = request
-                .getParameter(Constants.IS_AJAX_REQEUST);
-
+		final String ajaxRequest = request
+	                .getParameter(Constants.IS_AJAX_REQEUST);
+		boolean isAjaxRequest = false;
         boolean isToExecuteAction = true;
-        boolean isAjaxRequest = false;
-
+        
+        isRedirected = getIsRedirected(request);
         isAjaxRequest = getIsAjaxRequest(ajaxRequest);
+        final boolean isToRedirect = isToExecuteXSSSafeAction(request);
+        if(isToRedirect)
+        {
+        	 if (isAjaxRequest)
+             {
+                 isToExecuteAction = processAjaxRequestViolations(request,
+                         response);
+             }
+        	 else
+        	 {
+        		 if(null!=request.getParameter(Constants.PAGEOF))
+             	{
+        			 response.sendRedirect(CommonServiceLocator
+                             .getInstance().getXSSFailurePath()+"?"+Constants.PAGEOF+"="+(String)request.getParameter(Constants.PAGEOF));
+             	}
+        		else
+        		 {
+        		 response.sendRedirect(CommonServiceLocator
+                         .getInstance().getXSSFailurePath());
+        		 }
+        		 return actionForward;
+        	 }
+        }       
         if (isToRedirect)
         {
             if (isAjaxRequest)
