@@ -28,7 +28,7 @@ import edu.wustl.common.util.logger.Logger;
  * This Class is used to Add/Edit data in the database.
  * @author gautam_shetty
  */
-public class CommonAddEditAction extends XSSSupportedAction
+public class CommonAddEditAction extends SecureAction
 {
 
 	/**
@@ -46,7 +46,7 @@ public class CommonAddEditAction extends XSSSupportedAction
 	 * @return ActionForward
 	 * @throws Exception Exception
 	 * */
-	public ActionForward executeXSS(ActionMapping mapping, ActionForm form,
+	public ActionForward executeSecureAction(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 
@@ -56,15 +56,27 @@ public class CommonAddEditAction extends XSSSupportedAction
 		ActionForward actionfwd;
 		try
 		{
-			if (abstractForm.isAddOperation())
+			if ( !isTokenValid(request) ) 
 			{
-				addEditAction = new CommonAddAction();
-			}
+				actionfwd = mapping.findForward(Constants.FAILURE);
+				ActionErrors actionErrors = new ActionErrors();
+				ActionError actionError = new ActionError("errors.item","Invalid request for add/edit operaton");
+				actionErrors.add(ActionErrors.GLOBAL_ERROR, actionError);
+				saveErrors(request, actionErrors);
+		    }
 			else
 			{
-				addEditAction = new CommonEdtAction();
+				resetToken(request);
+				if (abstractForm.isAddOperation())
+				{
+					addEditAction = new CommonAddAction();
+				}
+				else
+				{
+					addEditAction = new CommonEdtAction();
+				}
+				actionfwd = addEditAction.executeXSS(mapping, abstractForm, request, response);
 			}
-			actionfwd = addEditAction.executeXSS(mapping, abstractForm, request, response);
 		}
 		catch (ApplicationException applicationException)
 		{

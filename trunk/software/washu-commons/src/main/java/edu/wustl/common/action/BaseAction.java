@@ -59,6 +59,7 @@ public abstract class BaseAction extends XSSSupportedAction
 	{
 		LOGGER.info("Inside execute method of BaseAction ");
 		//long startTime = System.currentTimeMillis();
+		
 		preExecute(mapping, form, request, response);
 		Object sessionData = request.getSession().getAttribute(Constants.TEMP_SESSION_DATA);
 		Object accessObj = request.getParameter(Constants.ACCESS);
