@@ -52,6 +52,7 @@ public abstract class SecureAction extends BaseAction
 	{
 
 		LOGGER.info("In execute method of secure Action");
+		saveToken(request);
 		//long startTime = System.currentTimeMillis();
 		preExecute(mapping, form, request, response);
 		Object sessionData = request.getSession().getAttribute(Constants.TEMP_SESSION_DATA);
