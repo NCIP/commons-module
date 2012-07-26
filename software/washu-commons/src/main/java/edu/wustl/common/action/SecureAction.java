@@ -52,20 +52,34 @@ public abstract class SecureAction extends BaseAction
 	{
 
 		LOGGER.info("In execute method of secure Action");
-		saveToken(request);
-		//long startTime = System.currentTimeMillis();
-		preExecute(mapping, form, request, response);
-		Object sessionData = request.getSession().getAttribute(Constants.TEMP_SESSION_DATA);
-		Object accessObj = request.getParameter(Constants.ACCESS);
-		if (!(sessionData != null && accessObj != null) && getSessionData(request) == null)
-		{
-				//Forward to the Login
-				throw new UserNotAuthenticatedException();
-		}
-		setAttributeFromParameter(request, Constants.OPERATION);
-		setAttributeFromParameter(request, Constants.MENU_SELECTED);
-		checkAddNewOperation(request);
-		return executeSecureAction(mapping, form, request, response);
+//		saveToken(request);
+		ActionForward actionfwd;
+//		if ( !isTokenValid(request) ) 
+//		{
+//			actionfwd = mapping.findForward(Constants.FAILURE);
+//			ActionErrors actionErrors = new ActionErrors();
+//			ActionError actionError = new ActionError("errors.item","Invalid request for add/edit operaton");
+//			actionErrors.add(ActionErrors.GLOBAL_ERROR, actionError);
+//			saveErrors(request, actionErrors);
+//	    }
+//		else
+//		{
+			//long startTime = System.currentTimeMillis();
+			preExecute(mapping, form, request, response);
+			Object sessionData = request.getSession().getAttribute(Constants.TEMP_SESSION_DATA);
+			Object accessObj = request.getParameter(Constants.ACCESS);
+			if (!(sessionData != null && accessObj != null) && getSessionData(request) == null)
+			{
+					//Forward to the Login
+					throw new UserNotAuthenticatedException();
+			}
+			setAttributeFromParameter(request, Constants.OPERATION);
+			setAttributeFromParameter(request, Constants.MENU_SELECTED);
+			checkAddNewOperation(request);
+			actionfwd = executeSecureAction(mapping, form, request, response);
+//		}
+		
+		return actionfwd;
 
 	}
 
