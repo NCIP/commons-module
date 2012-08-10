@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.struts.Globals;
+import org.apache.struts.action.ActionError;
+import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -60,10 +63,23 @@ public abstract class BaseAction extends XSSSupportedAction
 		LOGGER.info("Inside execute method of BaseAction ");
 		//long startTime = System.currentTimeMillis();
 		
+		String invalidRequest=(String)request.getParameter("invalidRequest");
+    	if(invalidRequest!=null && "true".equals(invalidRequest))
+    	{
+    		final ActionErrors errors = new ActionErrors();
+    		errors.add(ActionErrors.GLOBAL_ERROR, new ActionError("errors.invalid","Request"));
+    		// Report any errors we have discovered
+    		if (!errors.isEmpty())
+    		{
+    			saveErrors(request, errors);
+    		}
+    		request.setAttribute(Globals.ERROR_KEY,errors);
+    	}
+		
 		preExecute(mapping, form, request, response);
 		Object sessionData = request.getSession().getAttribute(Constants.TEMP_SESSION_DATA);
 		Object accessObj = request.getParameter(Constants.ACCESS);
-		if (!(sessionData != null && accessObj != null) && getSessionData(request) == null)
+		if (!(sessionData != null && accessObj != null) && getSessionData(request) == null && (invalidRequest==null || invalidRequest.equals("false")))
 		{
 			
 			//If condition for caTissue Single Sign On integration feature check
