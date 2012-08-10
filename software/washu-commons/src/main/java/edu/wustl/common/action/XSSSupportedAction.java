@@ -51,7 +51,21 @@ public  abstract class XSSSupportedAction extends Action
 			HttpServletRequest request, HttpServletResponse response) throws Exception
 	{
 		LOGGER.info("Inside execute method of XSSSupportedAction ");
-		ActionForward actionForward = checkForXSSViolation(mapping,form,
+		ActionForward actionForward=null;
+		LOGGER.info("Inside execute method of BaseAction ");
+		//long startTime = System.currentTimeMillis();
+		
+		String referer=request.getHeader("referer");
+		if(request.getRequestURL()!=null)
+		{
+			CommonServiceLocator.getInstance().setAppURL(request.getRequestURL().toString());
+		}
+		if(!referer.startsWith(CommonServiceLocator.getInstance().getAppURL()))
+		{
+			response.sendRedirect("/catissuecore/Logout.do?invalidRequest=true");
+			return actionForward;
+		}
+		 actionForward = checkForXSSViolation(mapping,form,
 				request, response);
 		return actionForward;
 	}
