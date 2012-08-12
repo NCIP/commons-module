@@ -60,7 +60,6 @@ public  abstract class XSSSupportedAction extends Action
 		{
 			CommonServiceLocator.getInstance().setAppURL(request.getRequestURL().toString());
 		}
-		System.out.println("BO request: &&"+referer);
 		if(!referer.startsWith(CommonServiceLocator.getInstance().getAppURL()))
 		{
 			response.sendRedirect("/catissuecore/Logout.do?invalidRequest=true");
