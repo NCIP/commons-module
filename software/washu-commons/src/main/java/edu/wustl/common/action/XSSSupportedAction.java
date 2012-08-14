@@ -14,6 +14,7 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import edu.wustl.common.util.XMLPropertyHandler;
 import edu.wustl.common.util.global.CommonServiceLocator;
 import edu.wustl.common.util.global.Constants;
 import edu.wustl.common.util.global.Validator;
@@ -56,16 +57,21 @@ public  abstract class XSSSupportedAction extends Action
 		//long startTime = System.currentTimeMillis();
 		
 		String referer=request.getHeader("referer");
-		//System.out.println(" Referer Value : "+referer);
+		System.out.println(" Referer Value : "+referer);
 		if(request.getRequestURL()!=null)
 		{
 			CommonServiceLocator.getInstance().setAppURL(request.getRequestURL().toString());
 		}
-		//System.out.println("URL Value : "+CommonServiceLocator.getInstance().getAppURL());
+		System.out.println("Request URL Value : "+CommonServiceLocator.getInstance().getAppURL());
 		if(referer==null || !referer.startsWith(CommonServiceLocator.getInstance().getAppURL()))
 		{
-			response.sendRedirect("/catissuecore/Logout.do?invalidRequest=true");
-			return actionForward;
+			String loadBalancerURL=XMLPropertyHandler.getValue("load.balancer.url");
+			System.out.println("Load Balancer Value : "+loadBalancerURL);
+			if(referer==null || (loadBalancerURL!=null && !loadBalancerURL.equals("") && !loadBalancerURL.equals(referer)))
+			{
+				response.sendRedirect("/catissuecore/Logout.do?invalidRequest=true");
+				return actionForward;
+			}
 		}
 		 actionForward = checkForXSSViolation(mapping,form,
 				request, response);
