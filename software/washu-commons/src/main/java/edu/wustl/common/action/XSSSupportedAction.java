@@ -56,11 +56,13 @@ public  abstract class XSSSupportedAction extends Action
 		//long startTime = System.currentTimeMillis();
 		
 		String referer=request.getHeader("referer");
+		//System.out.println(" Referer Value : "+referer);
 		if(request.getRequestURL()!=null)
 		{
 			CommonServiceLocator.getInstance().setAppURL(request.getRequestURL().toString());
 		}
-		if(!referer.startsWith(CommonServiceLocator.getInstance().getAppURL()))
+		//System.out.println("URL Value : "+CommonServiceLocator.getInstance().getAppURL());
+		if(referer==null || !referer.startsWith(CommonServiceLocator.getInstance().getAppURL()))
 		{
 			response.sendRedirect("/catissuecore/Logout.do?invalidRequest=true");
 			return actionForward;
