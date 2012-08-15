@@ -67,7 +67,7 @@ public  abstract class XSSSupportedAction extends Action
 		{
 			String loadBalancerURL=XMLPropertyHandler.getValue("load.balancer.url");
 			System.out.println("Load Balancer Value : "+loadBalancerURL);
-			if(referer==null || (loadBalancerURL!=null && !loadBalancerURL.equals("") && !loadBalancerURL.equals(referer)))
+			if(referer==null || (loadBalancerURL!=null && !loadBalancerURL.equals("") && !referer.startsWith(loadBalancerURL)))
 			{
 				response.sendRedirect("/catissuecore/Logout.do?invalidRequest=true");
 				return actionForward;
