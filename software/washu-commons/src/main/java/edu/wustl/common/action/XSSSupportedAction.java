@@ -57,17 +57,17 @@ public  abstract class XSSSupportedAction extends Action
 		//long startTime = System.currentTimeMillis();
 		
 		String referer=request.getHeader("referer");
-		System.out.println(" Referer Value : "+referer);
+		LOGGER.info(" Referer Value : "+referer);
 		if(request.getRequestURL()!=null)
 		{
 			CommonServiceLocator.getInstance().setAppURL(request.getRequestURL().toString());
 		}
-		System.out.println("Request URL Value : "+CommonServiceLocator.getInstance().getAppURL());
-		if(referer==null || !referer.startsWith(CommonServiceLocator.getInstance().getAppURL()))
+		LOGGER.info("Request URL Value : "+CommonServiceLocator.getInstance().getAppURL());
+		if(referer!=null && !referer.startsWith(CommonServiceLocator.getInstance().getAppURL()))
 		{
 			String loadBalancerURL=XMLPropertyHandler.getValue("load.balancer.url");
-			System.out.println("Load Balancer Value : "+loadBalancerURL);
-			if(referer==null || (loadBalancerURL!=null && !loadBalancerURL.equals("") && !referer.startsWith(loadBalancerURL)))
+			LOGGER.info("Load Balancer Value : "+loadBalancerURL);
+			if(referer!=null && (loadBalancerURL!=null && !loadBalancerURL.equals("") && !referer.startsWith(loadBalancerURL)))
 			{
 				response.sendRedirect("/catissuecore/Logout.do?invalidRequest=true");
 				return actionForward;
