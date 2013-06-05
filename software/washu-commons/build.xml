@@ -72,12 +72,13 @@ L-->
         </fileset>
 	</path>
 
-    <!-- SVN URL -->
+    <!-- SVN URL 
     <loadfile property="dist.revision" srcFile="../../.svn/entries">
         <filterchain>
             <headfilter lines="1" skip="4"/>
         </filterchain>
     </loadfile>
+    -->
     <property name="dist.revision" value="${dist.revision}" />
 
 <!--TARGETS-->
@@ -160,7 +161,9 @@ L-->
 					<attribute name="Version" value="${cp.jar.version}"/>
 					<attribute name="Built-By" value="${cp.jar.creator}" />
 					<attribute name="Build-on" value="${TODAY} ${TSTAMP}" />
+					<!--
 					<attribute name="SVN-URL" value="${dist.revision}" />
+					-->
 			  	</section>
 			</manifest>
 		</jar>
