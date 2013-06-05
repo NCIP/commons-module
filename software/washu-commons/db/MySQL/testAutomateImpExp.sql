@@ -1,3 +1,10 @@
+/*L
+  Copyright Washington University in St. Louis, SemanticBits, Persistent Systems, Krishagni.
+
+  Distributed under the OSI-approved BSD 3-Clause License.
+  See http://ncip.github.com/catissue-commons-module/LICENSE.txt for details.
+L*/
+
 #This file has been used for junit testing of AutomateImport for mysql databse.
 drop table if exists CATISSUE_PERMISSIBLE_VALUE;
 drop table if exists CATISSUE_CDE;

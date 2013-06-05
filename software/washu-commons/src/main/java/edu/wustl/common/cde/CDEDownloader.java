@@ -1,3 +1,10 @@
+/*L
+ * Copyright Washington University in St. Louis, SemanticBits, Persistent Systems, Krishagni.
+ *
+ * Distributed under the OSI-approved BSD 3-Clause License.
+ * See http://ncip.github.com/catissue-commons-module/LICENSE.txt for details.
+ */
+
 /*
  * Created on June 9, 2005
  * Last Modified : July 6, 2005.

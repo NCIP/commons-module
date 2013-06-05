@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<!--L
+  Copyright Washington University in St. Louis, SemanticBits, Persistent Systems, Krishagni.
+
+  Distributed under the OSI-approved BSD 3-Clause License.
+  See http://ncip.github.com/catissue-commons-module/LICENSE.txt for details.
+L-->
+
 <project name="washu-commons" default="dist" xmlns:ivy="antlib:org.apache.ivy.ant" basedir=".">
 
     <import file="ivy-targets.xml" />

@@ -1,3 +1,10 @@
+/*L
+  Copyright Washington University in St. Louis, SemanticBits, Persistent Systems, Krishagni.
+
+  Distributed under the OSI-approved BSD 3-Clause License.
+  See http://ncip.github.com/catissue-commons-module/LICENSE.txt for details.
+L*/
+
 #This file has been used for junit testing of AutomateImport for mssql server databse.
 IF EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'CATISSUE_PERMISSIBLE_VALUE') DROP TABLE CATISSUE_PERMISSIBLE_VALUE;
 IF EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'CATISSUE_CDE') DROP TABLE CATISSUE_CDE;

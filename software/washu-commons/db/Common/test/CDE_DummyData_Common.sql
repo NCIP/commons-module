@@ -1,3 +1,10 @@
+/*L
+  Copyright Washington University in St. Louis, SemanticBits, Persistent Systems, Krishagni.
+
+  Distributed under the OSI-approved BSD 3-Clause License.
+  See http://ncip.github.com/catissue-commons-module/LICENSE.txt for details.
+L*/
+
 INSERT INTO CATISSUE_CDE VALUES ( '2003991','Specimen','Specimen Class',1.0,null);
 INSERT INTO CATISSUE_PERMISSIBLE_VALUE (IDENTIFIER, VALUE, PARENT_IDENTIFIER, PUBLIC_ID) VALUES(1,'Molecular',NULL,'2003991');
 INSERT INTO CATISSUE_PERMISSIBLE_VALUE (IDENTIFIER, VALUE, PARENT_IDENTIFIER, PUBLIC_ID) VALUES(2,'Cell',NULL,'2003991');

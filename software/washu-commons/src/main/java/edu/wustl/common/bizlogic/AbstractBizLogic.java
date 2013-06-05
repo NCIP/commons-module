@@ -1,3 +1,10 @@
+/*L
+ * Copyright Washington University in St. Louis, SemanticBits, Persistent Systems, Krishagni.
+ *
+ * Distributed under the OSI-approved BSD 3-Clause License.
+ * See http://ncip.github.com/catissue-commons-module/LICENSE.txt for details.
+ */
+
 /**
  * <p>Title: AbstractBizLogic Class>
  * <p>Description:	AbstractBizLogic is the base class of all the Biz Logic classes.</p>
