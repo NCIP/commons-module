@@ -2,7 +2,7 @@
 Welcome to the caTissue Commons Module Project!
 =====================================
 
-caTissue Suite uses Commons Module.
+caTissue Commons Module is used by the caTissue project under the NCIP channel.
 
 
 The caTissue Commons Module is distributed under the BSD 3-Clause License.
