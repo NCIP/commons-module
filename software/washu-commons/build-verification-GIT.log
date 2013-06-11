@@ -1,0 +1,155 @@
+Buildfile: C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\build.xml
+
+download-ivy:
+     [echo] Installing ivy...
+      [get] Getting: http://repo1.maven.org/maven2/org/apache/ivy/ivy/2.0.0/ivy-2.0.0.jar
+      [get] To: C:\Users\narra\.ivy\ivy.jar
+      [get] Not modified - so not downloaded
+
+init-ivy:
+
+resolve:
+No ivy:settings found for the default reference 'ivy.instance'.  A default instance will be used
+[ivy:retrieve] :: Ivy 2.0.0 - 20090108225011 :: http://ant.apache.org/ivy/ ::
+:: loading settings :: file = C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\ivysettings.xml
+[ivy:retrieve] :: resolving dependencies :: gov.nih.nci.catissue#commons;1.3.6.2.4-SNAPSHOT
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	found local#washu-commons;1.0 in local-repo-jars
+[ivy:retrieve] :: resolution report :: resolve 199ms :: artifacts dl 552ms
+	---------------------------------------------------------------------
+	|                  |            modules            ||   artifacts   |
+	|       conf       | number| search|dwnlded|evicted|| number|dwnlded|
+	---------------------------------------------------------------------
+	|      default     |   1   |   0   |   0   |   0   ||   62  |   0   |
+	---------------------------------------------------------------------
+[ivy:retrieve] :: retrieving :: gov.nih.nci.catissue#commons
+[ivy:retrieve] 	confs: [default]
+[ivy:retrieve] 	0 artifacts copied, 62 already retrieved (0kB/39ms)
+
+postResolve:
+
+clean:
+   [delete] Deleting directory C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target
+
+init:
+    [mkdir] Created dir: C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes
+    [mkdir] Created dir: C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit
+    [mkdir] Created dir: C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes
+    [mkdir] Created dir: C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\Applet
+
+compile:
+    [javac] C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\build.xml:122: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 260 source files to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes
+    [javac] Note: Some input files use or override a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+     [copy] Copying 10 files to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes
+     [copy] Copying 1 file to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes
+     [copy] Copying 1 file to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\conf\ExceptionFormatter.properties to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\ExceptionFormatter.properties
+     [copy] Copying 3 files to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\src\CDEConfig.xml to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\CDEConfig.xml
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\src\DataTypeConfigurations.xml to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\DataTypeConfigurations.xml
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\src\Tag.properties to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\Tag.properties
+
+compileTest:
+    [javac] Compiling 58 source files to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes
+    [javac] Note: Some input files use or override a deprecated API.
+    [javac] Note: Recompile with -Xlint:deprecation for details.
+    [javac] Note: Some input files use unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+     [copy] Copying 39 files to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes
+
+update:hibernate-cfg:
+
+update:hibernate-cfg-mysql:
+     [echo] Updating hibernate.cfg.xml file for mysql...
+
+build.jar:
+     [copy] Copying 55 files to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\CommonBaseTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\CommonBaseTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\TestAll.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\TestAll.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\actionForm\MyActionForm.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\actionForm\MyActionForm.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\bizlogic\AbstractBizLogicTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\bizlogic\AbstractBizLogicTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\bizlogic\DefaultBizLogicTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\bizlogic\DefaultBizLogicTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\bizlogic\MyDefaultBizLogic.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\bizlogic\MyDefaultBizLogic.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\datahandler\TestDataHandler.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\datahandler\TestDataHandler.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\datatypes\DataTypeTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\datatypes\DataTypeTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\domain\CollectionProtocol.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\domain\CollectionProtocol.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\domain\DistributionProtocol.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\domain\DistributionProtocol.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\domain\MyDomainObject.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\domain\MyDomainObject.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\domain\Site.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\domain\Site.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\domain\StorageContainer.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\domain\StorageContainer.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\factory\AbstractFactoryConfigTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\factory\AbstractFactoryConfigTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\factory\MyBizLogicFactory.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\factory\MyBizLogicFactory.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\jobmanager\DummyJob.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\jobmanager\DummyJob.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\jobmanager\TestJobManager.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\jobmanager\TestJobManager.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\test\BaseTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\test\BaseTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\testdomain\Address.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\testdomain\Address.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\testdomain\JobDetails.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\testdomain\JobDetails.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\testdomain\Order.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\testdomain\Order.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\testdomain\Person.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\testdomain\Person.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\testdomain\User.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\testdomain\User.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\testdomain\UserRole.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\testdomain\UserRole.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\CVSTagReaderTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\CVSTagReaderTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\ExportReportTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\ExportReportTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\FileLoggerTest$TestLogger.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\FileLoggerTest$TestLogger.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\FileLoggerTest.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\FileLoggerTest.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\GraphTest.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\GraphTest.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\ObjectClonerTest.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\ObjectClonerTest.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\TreeTest.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\TreeTest.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\UtilityTestCases.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\UtilityTestCases.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\XMLPropertyHandlerTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\XMLPropertyHandlerTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\global\ApplicationPropertiesTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\global\ApplicationPropertiesTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\global\CommonServiceLocatorTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\global\CommonServiceLocatorTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\global\HibernatePropertiesTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\global\HibernatePropertiesTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\global\PasswordEncrypterTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\global\PasswordEncrypterTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\global\PasswordManagerTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\global\PasswordManagerTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\global\SendEmailTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\global\SendEmailTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\global\StatusTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\global\StatusTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\global\ValidatorTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\global\ValidatorTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\global\XMLParserUtilityTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\global\XMLParserUtilityTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\impexp\AutomateImportTest.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\impexp\AutomateImportTest.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\impexp\CommonAutomateImpExpTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\impexp\CommonAutomateImpExpTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\impexp\MsSqlAutomateImpExpTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\impexp\MsSqlAutomateImpExpTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\impexp\MySqlAutomateImpExpTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\impexp\MySqlAutomateImpExpTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\common\util\impexp\OracleAutomateImpExpTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\common\util\impexp\OracleAutomateImpExpTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\dao\MyDAOImpl.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\dao\MyDAOImpl.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\dao\test\BaseTestCase.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\dao\test\BaseTestCase.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\dao\test\DAOTestSuite.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\dao\test\DAOTestSuite.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\dao\test\HibernateTestCaseForCatissue.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\dao\test\HibernateTestCaseForCatissue.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\dao\test\HibernateTestCaseForCider.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\dao\test\HibernateTestCaseForCider.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\dao\test\JDBCTestCasesForCatissue.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\dao\test\JDBCTestCasesForCatissue.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\dao\test\JDBCTestCasesForCider.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\dao\test\JDBCTestCasesForCider.class
+     [copy] Copying C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes\edu\wustl\dao\test\TestAuditXMLGenerator.class to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes\edu\wustl\dao\test\TestAuditXMLGenerator.class
+      [jar] Building jar: C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\local-ivy-repo\washu-commons.jar
+
+init:
+   [delete] Deleting directory C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target
+    [mkdir] Created dir: C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\classes
+    [mkdir] Created dir: C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit
+    [mkdir] Created dir: C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\junit\classes
+    [mkdir] Created dir: C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\Applet
+
+applet_compile:
+    [javac] Compiling 4 source files to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\Applet
+    [javac] Note: C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\src\main\java\edu\wustl\common\tree\GenerateTree.java uses unchecked or unsafe operations.
+    [javac] Note: Recompile with -Xlint:unchecked for details.
+
+AppletJAR:
+     [copy] Copying 6 files to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\Applet\images
+ [buildJar] Building jar: C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\dist\TreeApplet.jar
+     [copy] Copying 1 file to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\dist
+     [copy] Copying 1 file to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\local-ivy-repo
+
+build.src.zip:
+    [mkdir] Created dir: C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\sources
+     [copy] Copying 273 files to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\target\sources
+      [jar] Building jar: C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\local-ivy-repo\washu-commons-src.jar
+     [copy] Copying 1 file to C:\Users\narra\Documents\GitHub\catissue-git\commons-module\software\washu-commons\dist
+
+dist:
+
+BUILD SUCCESSFUL
+Total time: 31 seconds
