@@ -2,7 +2,7 @@
   Copyright Washington University in St. Louis, SemanticBits, Persistent Systems, Krishagni.
 
   Distributed under the OSI-approved BSD 3-Clause License.
-  See http://ncip.github.com/catissue-commons-module/LICENSE.txt for details.
+  See http://ncip.github.com/commons-module/LICENSE.txt for details.
 L*/
 
 alter table CATEGORIAL_CLASS drop foreign key FK9651EF324E097CB9;

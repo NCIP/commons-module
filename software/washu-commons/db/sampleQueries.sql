@@ -2,7 +2,7 @@
   Copyright Washington University in St. Louis, SemanticBits, Persistent Systems, Krishagni.
 
   Distributed under the OSI-approved BSD 3-Clause License.
-  See http://ncip.github.com/catissue-commons-module/LICENSE.txt for details.
+  See http://ncip.github.com/commons-module/LICENSE.txt for details.
 L*/
 
 Select SpecimenCollectionGroup_1.IDENTIFIER, SpecimenCollectionGroup_1.NAME, SpecimenCollectionGroup_1.CLINICAL_DIAGNOSIS, SpecimenCollectionGroup_1.CLINICAL_STATUS, SpecimenCollectionGroup_1.ACTIVITY_STATUS From catissue_specimen_coll_group SpecimenCollectionGroup_1 left join catissue_specimen Specimen_2 on (SpecimenCollectionGroup_1.IDENTIFIER=Specimen_2.SPECIMEN_COLLECTION_GROUP_ID) left join catissue_specimen Specimen_3 on (Specimen_2.IDENTIFIER=Specimen_3.PARENT_SPECIMEN_ID) Where (SpecimenCollectionGroup_1.NAME like 'X%') Or(SpecimenCollectionGroup_1.IDENTIFIER = ANY(Select Specimen_2.SPECIMEN_COLLECTION_GROUP_ID From catissue_specimen  Specimen_2 left join catissue_specimen Specimen_3 on (Specimen_2.IDENTIFIER=Specimen_3.PARENT_SPECIMEN_ID) where (Specimen_2.TYPE='RNA') Or(Specimen_3.TYPE='DNA'))) And(SpecimenCollectionGroup_1.IDENTIFIER = ANY(Select Specimen_2.SPECIMEN_COLLECTION_GROUP_ID From catissue_specimen  Specimen_2 where Specimen_2.AVAILABLE=1)) Or(Specimen_2.TYPE!='DNA')
